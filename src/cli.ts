@@ -5,6 +5,8 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
+
+import 'core-js';
 import { Command } from 'commander';
 import { readFileSync } from 'fs';
 import path from 'path';

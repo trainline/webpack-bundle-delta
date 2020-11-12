@@ -2,6 +2,8 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
+
+import 'core-js';
 import BaseDataSource, { DataSourceBranchType } from './dataSources/BaseDataSource';
 import plugins from './plugins';
 import config from './config';

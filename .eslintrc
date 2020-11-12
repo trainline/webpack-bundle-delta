@@ -1,12 +1,11 @@
 {
   "extends": ["airbnb-base-typescript-prettier"],
+  "root": true,
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "ignorePatterns": ["node_modules/", "lib/"],
-  "plugins": [
-    "header"
-  ],
+  "plugins": ["header"],
   "rules": {
     "header/header": [2, "docs/copyright.js", { "lineEndings": "unix" }]
   },

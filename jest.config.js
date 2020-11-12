@@ -6,6 +6,7 @@ module.exports = {
   testRegex: '.*\\.test\\.tsx?$',
   testPathIgnorePatterns: ['/node_modules/'],
   testEnvironment: 'node',
+  setupFiles: ['core-js'],
   verbose: true,
   globalSetup: './test/globalSetup.ts',
 };

@@ -2,7 +2,7 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import deepEqual from 'deep-equal';
+import { isEqual } from 'lodash';
 import BasePlugin, { BasePluginOptions } from '../BasePlugin';
 import { RestrictConfig } from './config';
 import restrict, { RestrictedModule } from './restrict';
@@ -39,7 +39,7 @@ export default class RestrictPlugin extends BasePlugin<RestrictPluginOptions> {
               const { issuerPath: baseIssuePath, ...baseWithoutIssuers } = baseRestriction;
               // eslint-disable-next-line @typescript-eslint/no-unused-vars
               const { issuerPath: headIssuePath, ...headWithoutIssuers } = headRestriction;
-              return deepEqual(baseWithoutIssuers, headWithoutIssuers);
+              return isEqual(baseWithoutIssuers, headWithoutIssuers);
             })
         );
   }

@@ -36,7 +36,6 @@
     "chalk": "^4.1.0",
     "commander": "^6.2.0",
     "cosmiconfig": "^7.0.0",
-    "deep-equal": "^2.0.4",
     "lodash": "^4.17.20",
     "markdown-table": "^2.0.0",
     "string-width": "^4.2.0"
@@ -44,7 +43,6 @@
   "devDependencies": {
     "@release-it/conventional-changelog": "^2.0.0",
     "@types/bytes": "^3.1.0",
-    "@types/deep-equal": "^1.0.1",
     "@types/jest": "^26.0.15",
     "@types/lodash": "^4.14.165",
     "@types/markdown-table": "^2.0.0",

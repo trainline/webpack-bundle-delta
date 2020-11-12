@@ -5,7 +5,7 @@
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import webpack from 'webpack';
-import deepEqual from 'deep-equal';
+import { isEqual } from 'lodash';
 import { Restriction } from './config';
 import extractStats from '../../helpers/extractStats';
 import getNameFromAsset from '../../helpers/getNameFromAsset';
@@ -53,8 +53,7 @@ const restrict = (
   const uniqueRestrictedModules = restrictedModules.reduce((result, restrictedModule) => {
     const existingIndex = result.findIndex(
       ({ filename, restriction }) =>
-        restrictedModule.filename === filename &&
-        deepEqual(restriction, restrictedModule.restriction)
+        restrictedModule.filename === filename && isEqual(restriction, restrictedModule.restriction)
     );
     if (existingIndex >= 0) {
       // eslint-disable-next-line no-param-reassign

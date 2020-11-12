@@ -1,5 +1,7 @@
 # webpack-bundle-delta
 
+[![Nodejs Workflow](https://github.com/trainline/webpack-bundle-delta/workflows/Node.js%20CI/badge.svg)](https://github.com/trainline/webpack-bundle-delta/actions?query=workflow%3A%22Node.js+CI%22)
+
 <p align="center">
   <img src="./docs/images/logo.png" alt="Webpack Bundle Delta Logo">
 </p>

@@ -1,0 +1,76 @@
+{
+  "name": "webpack-bundle-delta",
+  "version": "0.0.0",
+  "description": "See what has changed between two webpack compilations",
+  "main": "lib/index.js",
+  "repository": "https://github.com/trainline/webpack-bundle-delta",
+  "author": "David Houweling <houweling@outlook.com>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 10"
+  },
+  "files": [
+    "lib"
+  ],
+  "bin": {
+    "webpack-bundle-delta": "./lib/cli.js"
+  },
+  "scripts": {
+    "commit": "git-cz",
+    "clean": "rimraf lib",
+    "build": "tsc --build tsconfig.build.json",
+    "test": "jest",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
+    "cli": "ts-node ./src/cli.ts",
+    "danger": "ts-node ./test/danger.ts",
+    "release": "release-it --disable-metrics"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn build && yarn lint && yarn test"
+    }
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "bytes": "^3.1.0",
+    "chalk": "^4.1.0",
+    "commander": "^6.2.0",
+    "cosmiconfig": "^7.0.0",
+    "deep-equal": "^2.0.4",
+    "lodash": "^4.17.20",
+    "markdown-table": "^2.0.0",
+    "string-width": "^4.2.0"
+  },
+  "devDependencies": {
+    "@release-it/conventional-changelog": "^2.0.0",
+    "@types/bytes": "^3.1.0",
+    "@types/deep-equal": "^1.0.1",
+    "@types/jest": "^26.0.15",
+    "@types/lodash": "^4.14.165",
+    "@types/markdown-table": "^2.0.0",
+    "@types/webpack": "^4.41.24",
+    "commitizen": "^4.2.2",
+    "cross-env": "^7.0.2",
+    "cz-customizable": "^6.3.0",
+    "danger": "^10.5.0",
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base-typescript-prettier": "^3.1.1",
+    "eslint-plugin-header": "^3.1.0",
+    "eslint-plugin-jest": "^24.1.0",
+    "eslint-plugin-jest-formatting": "^2.0.0",
+    "husky": "^4.3.0",
+    "jest": "^26.6.1",
+    "prettier": "^2.1.2",
+    "release-it": "^14.2.0",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^26.4.3",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5",
+    "webpack": "^4.44.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
+  }
+}

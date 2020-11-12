@@ -1,0 +1,26 @@
+{
+  "extends": ["airbnb-base-typescript-prettier"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "ignorePatterns": ["node_modules/", "lib/"],
+  "plugins": [
+    "header"
+  ],
+  "rules": {
+    "header/header": [2, "docs/copyright.js", { "lineEndings": "unix" }]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts*", "**/__mocks__/**/*"],
+      "extends": ["plugin:jest/recommended", "plugin:jest-formatting/strict"],
+      "plugins": ["jest"],
+      "env": {
+        "jest": true
+      },
+      "rules": {
+        "import/no-extraneous-dependencies": 0
+      }
+    }
+  ]
+}

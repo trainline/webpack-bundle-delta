@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DuplicationDetectionPlugin existing duplications returns cli output 1`] = `
+"## Duplication detection
+
+sgpStationPage.js
+
+- intersection-observer
+  - intersection-observer (ADDED)
+  - @fleet-components/sgp-footer/node_modules/intersection-observer (ADDED)
+
+- query-string
+  - @fleet-components/autocomplete-sgp-stations/node_modules/query-string (ADDED)
+  - query-string (ADDED)
+
+sgpTrainTimesPage.js
+
+- intersection-observer
+  - intersection-observer (existing)
+  - @fleet-components/sgp-footer/node_modules/intersection-observer (existing)
+
+- query-string
+  - @fleet-components/autocomplete-sgp-stations/node_modules/query-string (existing)
+  - query-string (existing)"
+`;
+
+exports[`DuplicationDetectionPlugin existing duplications returns danger output 1`] = `
+"## Duplication detection
+
+sgpStationPage.js
+
+- \`intersection-observer\`
+  - \`intersection-observer\` (**ADDED**)
+  - \`@fleet-components/sgp-footer/node_modules/intersection-observer\` (**ADDED**)
+
+- \`query-string\`
+  - \`@fleet-components/autocomplete-sgp-stations/node_modules/query-string\` (**ADDED**)
+  - \`query-string\` (**ADDED**)
+
+sgpTrainTimesPage.js
+
+- \`intersection-observer\`
+  - \`intersection-observer\` (existing)
+  - \`@fleet-components/sgp-footer/node_modules/intersection-observer\` (existing)
+
+- \`query-string\`
+  - \`@fleet-components/autocomplete-sgp-stations/node_modules/query-string\` (existing)
+  - \`query-string\` (existing)"
+`;
+
+exports[`DuplicationDetectionPlugin only new duplications returns cli output 1`] = `
+"## Duplication detection
+
+sgpStationPage.js
+
+- intersection-observer
+  - intersection-observer (ADDED)
+  - @fleet-components/sgp-footer/node_modules/intersection-observer (ADDED)
+
+- query-string
+  - @fleet-components/autocomplete-sgp-stations/node_modules/query-string (ADDED)
+  - query-string (ADDED)"
+`;
+
+exports[`DuplicationDetectionPlugin only new duplications returns danger output 1`] = `
+"## Duplication detection
+
+sgpStationPage.js
+
+- \`intersection-observer\`
+  - \`intersection-observer\` (**ADDED**)
+  - \`@fleet-components/sgp-footer/node_modules/intersection-observer\` (**ADDED**)
+
+- \`query-string\`
+  - \`@fleet-components/autocomplete-sgp-stations/node_modules/query-string\` (**ADDED**)
+  - \`query-string\` (**ADDED**)"
+`;

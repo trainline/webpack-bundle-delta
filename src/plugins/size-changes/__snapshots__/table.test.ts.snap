@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`table budget generates html table 1`] = `
+"<table>
+  <thead>
+    <th>File</th>
+    <th>Size</th>
+    <th>Gzip size</th>
+    <th>Brotli size</th>
+    <th>Budget</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>stationsIndexPage.mjs</td>
+      <td>543.43KB (+541B / <strong>+0.1%</strong>)</td>
+      <td>145.3KB (+145.3KB / <strong>+0.16%</strong>)</td>
+      <td>-</td>
+      <td>75.12% (Brotli)</td>
+    </tr>
+  </tbody>
+</table>"
+`;
+
+exports[`table budget generates markdown table 1`] = `
+"| File                  |           Size           |          Gzip size          | Brotli size |   Budget   |
+| :-------------------- | :----------------------: | :-------------------------: | :---------: | :--------: |
+| stationsIndexPage.mjs | 543.43KB (+541B / +0.1%) | 145.3KB ([1m+145.3KB[22m / +0.16%) |      -      | 70% (Gzip) |"
+`;
+
+exports[`table generates html table 1`] = `
+"<table>
+  <thead>
+    <th>File</th>
+    <th>Size</th>
+    <th>Gzip size</th>
+    <th>Brotli size</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td>stationsIndexPage.mjs</td>
+      <td>543.43KB (+541B / +0.1%)</td>
+      <td>145.3KB (+145.3KB / +0.16%)</td>
+      <td>-</td>
+    </tr>
+  </tbody>
+</table>"
+`;
+
+exports[`table generates markdown table 1`] = `
+"| File                  |           Size           |          Gzip size          | Brotli size |
+| :-------------------- | :----------------------: | :-------------------------: | :---------: |
+| stationsIndexPage.mjs | 543.43KB ([1m+541B[22m / [1m+0.1%[22m) | 145.3KB (+145.3KB / +0.16%) |      -      |"
+`;

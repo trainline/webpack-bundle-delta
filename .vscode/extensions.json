@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "christian-kohler.path-intellisense",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "oouo-diogo-perdigao.docthis",
+    "Orta.vscode-jest"
+  ]
+}

@@ -1,0 +1,163 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestrictPlugin existing restrictions returns cli output 1`] = `
+"## Restricted files
+
+The following restrictions were found:
+- 🚫 ./node_modules/lodash.omitby/index.js: no lodash.omitby
+  - Used in
+    - coachTimesPage.js
+    - stationPage.js
+    - stationsIndexPage.js
+    - trainTimesPage.js
+    - trainTimesPageV2.js
+    - vendors~priceCalendar.js
+    - coachTimesPage.mjs
+    - stationPage.mjs
+    - stationsIndexPage.mjs
+    - trainTimesPage.mjs
+    - trainTimesPageV2.mjs
+    - vendors~priceCalendar.mjs
+  - Issuer path
+    - ./src/private/client/TrainTimesPage.jsx
+    - ./src/private/common/pages/train-times/index.jsx
+    - ./src/private/common/pages/train-times/TrainTimesPage.jsx
+    - ./src/private/common/components/price-calendar/index.js
+    - ./src/private/common/components/price-calendar/PriceCalendarWithQuery.jsx
+    - ./node_modules/@fleet-components/price-bars/module/index.js
+    - ./node_modules/@fleet-components/price-bars/module/components/price-bars/index.js
+    - ./node_modules/@fleet-components/price-bars/module/utils/buildDpiUrl.js
+    - ./node_modules/trainline-eu-dpi/lib/index.js
+
+- ⚠️ ./src/private/common/components/section-error-fallback/index.jsx: no section error fallback component
+  - Used in
+    - sgpTrainTimesPage.js
+    - trainTimesPage.js
+    - trainTimesPageV2.js
+    - sgpTrainTimesPage.mjs
+    - trainTimesPage.mjs
+    - trainTimesPageV2.mjs
+  - Issuer path
+    - ./src/private/client/TrainTimesPageV2.jsx
+    - ./src/private/common/pages/train-times-v2/index.jsx
+    - ./src/private/common/pages/train-times-v2/TrainTimesPage.jsx
+
+Note: Issuer path is the trace of the first time this file was referenced, refer to chunks for where it is included elsewhere."
+`;
+
+exports[`RestrictPlugin existing restrictions returns danger output 1`] = `
+"## Restricted files
+
+The following restrictions were found:
+
+<ul>
+  <li>🚫 <code>./node_modules/lodash.omitby/index.js</code>: no lodash.omitby
+    <details>
+      <summary>Used in</summary>
+      <ul>
+        <li><code>coachTimesPage.js</code></li>
+        <li><code>stationPage.js</code></li>
+        <li><code>stationsIndexPage.js</code></li>
+        <li><code>trainTimesPage.js</code></li>
+        <li><code>trainTimesPageV2.js</code></li>
+        <li><code>vendors~priceCalendar.js</code></li>
+        <li><code>coachTimesPage.mjs</code></li>
+        <li><code>stationPage.mjs</code></li>
+        <li><code>stationsIndexPage.mjs</code></li>
+        <li><code>trainTimesPage.mjs</code></li>
+        <li><code>trainTimesPageV2.mjs</code></li>
+        <li><code>vendors~priceCalendar.mjs</code></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Issuer path</summary>
+      <ul>
+        <li><code>./src/private/client/TrainTimesPage.jsx</code></li>
+        <li><code>./src/private/common/pages/train-times/index.jsx</code></li>
+        <li><code>./src/private/common/pages/train-times/TrainTimesPage.jsx</code></li>
+        <li><code>./src/private/common/components/price-calendar/index.js</code></li>
+        <li><code>./src/private/common/components/price-calendar/PriceCalendarWithQuery.jsx</code></li>
+        <li><code>./node_modules/@fleet-components/price-bars/module/index.js</code></li>
+        <li><code>./node_modules/@fleet-components/price-bars/module/components/price-bars/index.js</code></li>
+        <li><code>./node_modules/@fleet-components/price-bars/module/utils/buildDpiUrl.js</code></li>
+        <li><code>./node_modules/trainline-eu-dpi/lib/index.js</code></li>
+      </ul>
+    </details>
+  </li>
+  <li>⚠️ <code>./src/private/common/components/section-error-fallback/index.jsx</code>: no section error fallback component
+    <details>
+      <summary>Used in</summary>
+      <ul>
+        <li><code>sgpTrainTimesPage.js</code></li>
+        <li><code>trainTimesPage.js</code></li>
+        <li><code>trainTimesPageV2.js</code></li>
+        <li><code>sgpTrainTimesPage.mjs</code></li>
+        <li><code>trainTimesPage.mjs</code></li>
+        <li><code>trainTimesPageV2.mjs</code></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Issuer path</summary>
+      <ul>
+        <li><code>./src/private/client/TrainTimesPageV2.jsx</code></li>
+        <li><code>./src/private/common/pages/train-times-v2/index.jsx</code></li>
+        <li><code>./src/private/common/pages/train-times-v2/TrainTimesPage.jsx</code></li>
+      </ul>
+    </details>
+  </li>
+</ul>
+
+*Note: Issuer path is the trace of the first time this file was referenced, refer to chunks for where it is included elsewhere.*"
+`;
+
+exports[`RestrictPlugin only new restrictions returns cli output 1`] = `
+"## Restricted files
+
+The following restrictions were found:
+- ⚠️ ./src/private/common/components/section-error-fallback/index.jsx: no section error fallback component
+  - Used in
+    - sgpTrainTimesPage.js
+    - trainTimesPage.js
+    - trainTimesPageV2.js
+    - sgpTrainTimesPage.mjs
+    - trainTimesPage.mjs
+    - trainTimesPageV2.mjs
+  - Issuer path
+    - ./src/private/client/TrainTimesPageV2.jsx
+    - ./src/private/common/pages/train-times-v2/index.jsx
+    - ./src/private/common/pages/train-times-v2/TrainTimesPage.jsx
+
+Note: Issuer path is the trace of the first time this file was referenced, refer to chunks for where it is included elsewhere."
+`;
+
+exports[`RestrictPlugin only new restrictions returns danger output 1`] = `
+"## Restricted files
+
+The following restrictions were found:
+
+<ul>
+  <li>⚠️ <code>./src/private/common/components/section-error-fallback/index.jsx</code>: no section error fallback component
+    <details>
+      <summary>Used in</summary>
+      <ul>
+        <li><code>sgpTrainTimesPage.js</code></li>
+        <li><code>trainTimesPage.js</code></li>
+        <li><code>trainTimesPageV2.js</code></li>
+        <li><code>sgpTrainTimesPage.mjs</code></li>
+        <li><code>trainTimesPage.mjs</code></li>
+        <li><code>trainTimesPageV2.mjs</code></li>
+      </ul>
+    </details>
+    <details>
+      <summary>Issuer path</summary>
+      <ul>
+        <li><code>./src/private/client/TrainTimesPageV2.jsx</code></li>
+        <li><code>./src/private/common/pages/train-times-v2/index.jsx</code></li>
+        <li><code>./src/private/common/pages/train-times-v2/TrainTimesPage.jsx</code></li>
+      </ul>
+    </details>
+  </li>
+</ul>
+
+*Note: Issuer path is the trace of the first time this file was referenced, refer to chunks for where it is included elsewhere.*"
+`;

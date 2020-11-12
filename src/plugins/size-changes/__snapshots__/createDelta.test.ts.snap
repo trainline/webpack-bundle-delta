@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createDelta returns delta when chunk is in both base and head 1`] = `
+Array [
+  Object {
+    "brSizeDiff": -74.2533822415611,
+    "budget": null,
+    "currentBrSize": 34674,
+    "currentGzSize": 74867,
+    "currentSize": 553190,
+    "file": "sgpTrainTimesPage.js",
+    "gzSizeDiff": -57.18631874510343,
+    "prevBrSize": 134674,
+    "prevGzSize": 174867,
+    "prevSize": 653190,
+    "significantFields": Array [
+      "sizeDiffBytes",
+      "sizeDiffPercent",
+      "gzSizeDiffPercent",
+      "brSizeDiffPercent",
+    ],
+    "sizeDiff": -15.309481161683431,
+  },
+  Object {
+    "brSizeDiff": -2.700658960786432,
+    "budget": null,
+    "currentBrSize": 36028,
+    "currentGzSize": 42562,
+    "currentSize": 286997,
+    "file": "sgpTrainTimesPage.css",
+    "gzSizeDiff": -6.58443439708529,
+    "prevBrSize": 37028,
+    "prevGzSize": 45562,
+    "prevSize": 296997,
+    "significantFields": Array [
+      "sizeDiffBytes",
+      "gzSizeDiffPercent",
+    ],
+    "sizeDiff": -3.3670373774819273,
+  },
+  Object {
+    "brSizeDiff": 0,
+    "budget": null,
+    "currentBrSize": 104674,
+    "currentGzSize": 144867,
+    "currentSize": 603190,
+    "file": "sgpTrainTimesPage.mjs",
+    "gzSizeDiff": 0,
+    "prevBrSize": 104674,
+    "prevGzSize": 144867,
+    "prevSize": 603190,
+    "significantFields": Array [],
+    "sizeDiff": 0,
+  },
+]
+`;

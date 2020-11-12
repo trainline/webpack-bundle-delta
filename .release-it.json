@@ -1,0 +1,17 @@
+{
+  "git": {
+    "requireBranch": "master"
+  },
+  "github": {
+    "release": true
+  },
+  "hooks": {
+    "before:init": ["yarn run lint", "yarn test"],
+    "after:bump": ["yarn run clean", "yarn run build"]
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": "angular"
+    }
+  }
+}

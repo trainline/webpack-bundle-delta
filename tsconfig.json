@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2018",
+    "lib": ["ES2019", "ES2020"],
+    "module": "commonjs",
+    "outDir": "lib",
+    "noEmitOnError": true,
+    "allowUnusedLabels": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "rootDirs": ["src", "test"],
+    "typeRoots": ["./types", "./node_modules/@types"]
+  },
+  "include": ["src/**/*", "docs/**/*", "types/**/*", "test/**/*"]
+}

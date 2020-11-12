@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResolveAliasRemapPlugin existing suggestions returns cli output 1`] = `
+"## Resolve Alias Remap
+
+The following suggestions may be added to the webpack resolve.alias section to reduce duplicated functionality:
+- \\"lodash.isequal\\": \\"lodash/isEqual\\"
+- \\"lodash.omitby\\": \\"lodash/omitBy\\""
+`;
+
+exports[`ResolveAliasRemapPlugin existing suggestions returns danger output 1`] = `
+"## Resolve Alias Remap
+
+The following suggestions may be added to the webpack resolve.alias section to reduce duplicated functionality:
+- \`\\"lodash.isequal\\": \\"lodash/isEqual\\"\`
+- \`\\"lodash.omitby\\": \\"lodash/omitBy\\"\`"
+`;
+
+exports[`ResolveAliasRemapPlugin only new suggestions returns cli output 1`] = `
+"## Resolve Alias Remap
+
+No suggestions available"
+`;
+
+exports[`ResolveAliasRemapPlugin only new suggestions returns danger output 1`] = `
+"## Resolve Alias Remap
+
+No suggestions available"
+`;

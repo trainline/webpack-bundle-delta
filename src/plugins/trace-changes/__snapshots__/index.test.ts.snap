@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TraceChangesPlugin changes available returns cli output 1`] = `
+"## Trace changes
+
+priceCardsCarousel.js
+
+- ./src/private/common/components/price-cards-carousel/index.js + 2 modules: 4.38KB (128B / 2.93%)
+
+sgpStationPage.js
+
+- ./src/private/common/components/price-cards-carousel/index.js + 2 modules: 4.38KB (128B / 2.93%)
+
+sgpTrainTimesPage.js
+
+- ./src/private/common/pages/train-times/TrainTimesPage.jsx + 23 modules: 81.61KB (-1.46KB / -1.76%, -3 modules)
+- ./src/private/common/components/section-loader/index.jsx + 1 module: 966B (ADDED, +1 module)
+- ./src/private/common/components/section-error-fallback/index.jsx: 547B (ADDED)
+
+stationPage.js
+
+- ./src/private/common/components/price-cards-carousel/index.js + 2 modules: 4.38KB (128B / 2.93%)
+
+trainTimesPage.js
+
+- ./src/private/common/pages/train-times/TrainTimesPage.jsx + 23 modules: 81.61KB (-1.46KB / -1.76%, -3 modules)
+- ./src/private/common/components/section-loader/index.jsx + 1 module: 966B (ADDED, +1 module)
+- ./src/private/common/components/section-error-fallback/index.jsx: 547B (ADDED)
+
+trainTimesPageV2.js
+
+- @fleet-components/base-carousel/module/index.js + 1 module: 7.76KB (ADDED, +1 module)
+- @fleet-components/price-cards-carousel/module/index.js + 1 module: 5.27KB (ADDED, +1 module)
+- ./src/private/common/components/price-cards-carousel/index.js + 2 modules: 4.38KB (ADDED, +2 modules)
+- ./src/private/common/components/section-loader/index.jsx + 1 module: 966B (ADDED, +1 module)
+- ./src/private/common/pages/train-times-v2/TrainTimesPage.jsx + 18 modules: 20.66KB (623B / 3.03%)
+- ./src/private/common/components/section-error-fallback/index.jsx: 547B (ADDED)
+- ./src/private/common/components/price-cards-carousel/translations/en.json: 2B (ADDED)
+
+priceCardsCarousel.mjs
+
+- ./src/private/common/components/price-cards-carousel/index.js + 2 modules: 3.81KB (176B / 4.73%)
+
+sgpStationPage.mjs
+
+- ./src/private/common/components/price-cards-carousel/index.js + 2 modules: 3.81KB (176B / 4.73%)
+
+sgpTrainTimesPage.mjs
+
+- ./src/private/common/pages/train-times/TrainTimesPage.jsx + 22 modules: 65.06KB (-1.36KB / -2.05%, -3 modules)
+- ./src/private/common/components/section-loader/index.jsx + 1 module: 914B (ADDED, +1 module)
+- ./src/private/common/components/section-error-fallback/index.jsx: 499B (ADDED)
+
+stationPage.mjs
+
+- ./src/private/common/components/price-cards-carousel/index.js + 2 modules: 3.81KB (176B / 4.73%)
+
+trainTimesPage.mjs
+
+- ./src/private/common/pages/train-times/TrainTimesPage.jsx + 22 modules: 65.06KB (-1.36KB / -2.05%, -3 modules)
+- ./src/private/common/components/section-loader/index.jsx + 1 module: 914B (ADDED, +1 module)
+- ./src/private/common/components/section-error-fallback/index.jsx: 499B (ADDED)
+
+trainTimesPageV2.mjs
+
+- @fleet-components/base-carousel/module/index.js + 1 module: 4.81KB (ADDED, +1 module)
+- @fleet-components/price-cards-carousel/module/index.js + 1 module: 4.75KB (ADDED, +1 module)
+- ./src/private/common/components/price-cards-carousel/index.js + 2 modules: 3.81KB (ADDED, +2 modules)
+- ./src/private/common/components/section-loader/index.jsx + 1 module: 914B (ADDED, +1 module)
+- ./src/private/common/pages/train-times-v2/TrainTimesPage.jsx + 18 modules: 17.77KB (552B / 3.13%)
+- ./src/private/common/components/section-error-fallback/index.jsx: 499B (ADDED)
+- ./src/private/common/components/price-cards-carousel/translations/en.json: 2B (ADDED)"
+`;
+
+exports[`TraceChangesPlugin changes available returns danger output 1`] = `
+"## Trace changes
+
+priceCardsCarousel.js
+
+- \`./src/private/common/components/price-cards-carousel/index.js + 2 modules\`: 4.38KB (128B / 2.93%)
+
+sgpStationPage.js
+
+- \`./src/private/common/components/price-cards-carousel/index.js + 2 modules\`: 4.38KB (128B / 2.93%)
+
+sgpTrainTimesPage.js
+
+- \`./src/private/common/pages/train-times/TrainTimesPage.jsx + 23 modules\`: 81.61KB (-1.46KB / -1.76%, -3 modules)
+- \`./src/private/common/components/section-loader/index.jsx + 1 module\`: 966B (ADDED, +1 module)
+- \`./src/private/common/components/section-error-fallback/index.jsx\`: 547B (ADDED)
+
+stationPage.js
+
+- \`./src/private/common/components/price-cards-carousel/index.js + 2 modules\`: 4.38KB (128B / 2.93%)
+
+trainTimesPage.js
+
+- \`./src/private/common/pages/train-times/TrainTimesPage.jsx + 23 modules\`: 81.61KB (-1.46KB / -1.76%, -3 modules)
+- \`./src/private/common/components/section-loader/index.jsx + 1 module\`: 966B (ADDED, +1 module)
+- \`./src/private/common/components/section-error-fallback/index.jsx\`: 547B (ADDED)
+
+trainTimesPageV2.js
+
+- \`@fleet-components/base-carousel/module/index.js + 1 module\`: 7.76KB (ADDED, +1 module)
+- \`@fleet-components/price-cards-carousel/module/index.js + 1 module\`: 5.27KB (ADDED, +1 module)
+- \`./src/private/common/components/price-cards-carousel/index.js + 2 modules\`: 4.38KB (ADDED, +2 modules)
+- \`./src/private/common/components/section-loader/index.jsx + 1 module\`: 966B (ADDED, +1 module)
+- \`./src/private/common/pages/train-times-v2/TrainTimesPage.jsx + 18 modules\`: 20.66KB (623B / 3.03%)
+- \`./src/private/common/components/section-error-fallback/index.jsx\`: 547B (ADDED)
+- \`./src/private/common/components/price-cards-carousel/translations/en.json\`: 2B (ADDED)
+
+priceCardsCarousel.mjs
+
+- \`./src/private/common/components/price-cards-carousel/index.js + 2 modules\`: 3.81KB (176B / 4.73%)
+
+sgpStationPage.mjs
+
+- \`./src/private/common/components/price-cards-carousel/index.js + 2 modules\`: 3.81KB (176B / 4.73%)
+
+sgpTrainTimesPage.mjs
+
+- \`./src/private/common/pages/train-times/TrainTimesPage.jsx + 22 modules\`: 65.06KB (-1.36KB / -2.05%, -3 modules)
+- \`./src/private/common/components/section-loader/index.jsx + 1 module\`: 914B (ADDED, +1 module)
+- \`./src/private/common/components/section-error-fallback/index.jsx\`: 499B (ADDED)
+
+stationPage.mjs
+
+- \`./src/private/common/components/price-cards-carousel/index.js + 2 modules\`: 3.81KB (176B / 4.73%)
+
+trainTimesPage.mjs
+
+- \`./src/private/common/pages/train-times/TrainTimesPage.jsx + 22 modules\`: 65.06KB (-1.36KB / -2.05%, -3 modules)
+- \`./src/private/common/components/section-loader/index.jsx + 1 module\`: 914B (ADDED, +1 module)
+- \`./src/private/common/components/section-error-fallback/index.jsx\`: 499B (ADDED)
+
+trainTimesPageV2.mjs
+
+- \`@fleet-components/base-carousel/module/index.js + 1 module\`: 4.81KB (ADDED, +1 module)
+- \`@fleet-components/price-cards-carousel/module/index.js + 1 module\`: 4.75KB (ADDED, +1 module)
+- \`./src/private/common/components/price-cards-carousel/index.js + 2 modules\`: 3.81KB (ADDED, +2 modules)
+- \`./src/private/common/components/section-loader/index.jsx + 1 module\`: 914B (ADDED, +1 module)
+- \`./src/private/common/pages/train-times-v2/TrainTimesPage.jsx + 18 modules\`: 17.77KB (552B / 3.13%)
+- \`./src/private/common/components/section-error-fallback/index.jsx\`: 499B (ADDED)
+- \`./src/private/common/components/price-cards-carousel/translations/en.json\`: 2B (ADDED)"
+`;
+
+exports[`TraceChangesPlugin no changes available returns cli output 1`] = `
+"## Trace changes
+
+No changes found"
+`;
+
+exports[`TraceChangesPlugin no changes available returns danger output 1`] = `
+"## Trace changes
+
+No changes found"
+`;

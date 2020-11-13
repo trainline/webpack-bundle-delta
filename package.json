@@ -25,7 +25,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
     "cli": "ts-node ./src/cli.ts",
     "danger": "ts-node ./test/danger.ts",
-    "release": "release-it --disable-metrics"
+    "release": "release-it"
   },
   "husky": {
     "hooks": {

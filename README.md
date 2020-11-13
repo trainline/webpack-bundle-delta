@@ -31,9 +31,9 @@ Why?
 2. [Produce compressed output of your files](./docs/compression-output.md)
 3. Install via `yarn` or `npm`
     ``` console
-    yarn add webpack-bundle-delta --dev
+    yarn add @trainline/webpack-bundle-delta --dev
     # or
-    npm i -D webpack-bundle-delta
+    npm i -D @trainline/webpack-bundle-delta
     ```
 4. [Optionally] [configure](./src/config/README.md) `webpack-bundle-delta` to your needs
 5. Follow either the `cli` or `dangerjs` setup below

@@ -1,5 +1,5 @@
 {
-  "name": "webpack-bundle-delta",
+  "name": "@trainline/webpack-bundle-delta",
   "version": "0.0.0",
   "description": "See what has changed between two webpack compilations",
   "main": "lib/index.js",
@@ -18,7 +18,8 @@
     "webpack-bundle-delta": "./lib/cli.js"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "scripts": {
     "commit": "git-cz",

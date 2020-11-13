@@ -17,6 +17,9 @@
   "bin": {
     "webpack-bundle-delta": "./lib/cli.js"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "commit": "git-cz",
     "clean": "rimraf lib",

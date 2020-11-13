@@ -10,7 +10,9 @@
     "node": ">= 10"
   },
   "files": [
-    "lib"
+    "lib",
+    "LICENSE.md",
+    "README.md"
   ],
   "bin": {
     "webpack-bundle-delta": "./lib/cli.js"

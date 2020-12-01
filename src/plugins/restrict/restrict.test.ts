@@ -2,11 +2,11 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import { defaultBasePluginConfig } from '../../config/PluginConfig';
 import restrict, { RestrictedModule } from './restrict';
 
-const stats: webpack.Stats.ToJsonOutput = {
+const stats: webpack4.Stats.ToJsonOutput = {
   _showErrors: false,
   _showWarnings: false,
   errors: [],
@@ -39,7 +39,7 @@ const stats: webpack.Stats.ToJsonOutput = {
         },
       ],
       chunks: [1, 2],
-    } as unknown) as webpack.Stats.FnModules,
+    } as unknown) as webpack4.Stats.FnModules,
     ({
       name: './node_modules/lodash.omitby/index.js',
       issuerPath: [
@@ -51,7 +51,7 @@ const stats: webpack.Stats.ToJsonOutput = {
         },
       ],
       chunks: [2],
-    } as unknown) as webpack.Stats.FnModules,
+    } as unknown) as webpack4.Stats.FnModules,
     ({
       name: './node_modules/not-restricted/index.js',
       issuerPath: [
@@ -60,7 +60,7 @@ const stats: webpack.Stats.ToJsonOutput = {
         },
       ],
       chunks: [1],
-    } as unknown) as webpack.Stats.FnModules,
+    } as unknown) as webpack4.Stats.FnModules,
   ],
 };
 

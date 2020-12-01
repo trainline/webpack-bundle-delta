@@ -4,7 +4,7 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import axios, { AxiosResponse } from 'axios';
 import BaseDataSource, { DataSource, DataSourceBranchType } from '../BaseDataSource';
 
@@ -28,7 +28,7 @@ export default class TeamCityDataSource extends BaseDataSource implements DataSo
   async getCompilationStats(
     _branchType: DataSourceBranchType,
     sha: string
-  ): Promise<webpack.Stats.ToJsonOutput> {
+  ): Promise<webpack4.Stats.ToJsonOutput> {
     const {
       serverUrl,
       username,
@@ -36,7 +36,7 @@ export default class TeamCityDataSource extends BaseDataSource implements DataSo
       buildType,
       fileName = 'compilation-stats.json',
     } = this.options;
-    const { data } = await axios.get<unknown, AxiosResponse<webpack.Stats.ToJsonOutput>>(
+    const { data } = await axios.get<unknown, AxiosResponse<webpack4.Stats.ToJsonOutput>>(
       `${serverUrl}/app/rest/builds/buildType:${buildType},branch:default:any,revision:${sha}/artifacts/content/${fileName}`,
       {
         auth: {

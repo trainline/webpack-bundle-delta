@@ -4,11 +4,11 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 
 export interface BasePluginOptions {
-  baseCompilationStats: webpack.Stats.ToJsonOutput;
-  headCompilationStats: webpack.Stats.ToJsonOutput;
+  baseCompilationStats: webpack4.Stats.ToJsonOutput;
+  headCompilationStats: webpack4.Stats.ToJsonOutput;
   config: unknown;
 }
 

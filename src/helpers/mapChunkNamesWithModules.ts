@@ -4,7 +4,7 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import { FILENAME_JS_MJS_EXTENSIONS, FILENAME_QUERY_REGEXP } from './constants';
 import extractStats from './extractStats';
 
@@ -19,7 +19,7 @@ export interface ChunkNamesToModules {
 }
 
 const mapChunkNamesWithModules = (
-  compilationStats: webpack.Stats.ToJsonOutput
+  compilationStats: webpack4.Stats.ToJsonOutput
 ): ChunkNamesToModules => {
   const mapped = extractStats(compilationStats).reduce((chunkNamesToModules, stats) => {
     const { assets, modules } = stats;

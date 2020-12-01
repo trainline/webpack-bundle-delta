@@ -4,7 +4,7 @@
  */
 import fs from 'fs';
 import path from 'path';
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 
 import LocalFileDataSource, { LocalFileDataSourceConfiguration } from '.';
 
@@ -55,8 +55,8 @@ describe('LocalFileDataSource', () => {
   });
 
   describe('getCompilationStats()', () => {
-    const baseStats = (baseCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
-    const headStats = (headCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
+    const baseStats = (baseCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
+    const headStats = (headCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
 
     describe('happy path', () => {
       beforeEach(() => {

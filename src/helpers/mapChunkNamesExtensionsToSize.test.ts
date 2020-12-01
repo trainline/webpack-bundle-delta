@@ -2,14 +2,14 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import { defaultBasePluginConfig } from '../config/PluginConfig';
 
 import mapChunkNamesExtensionsToSize from './mapChunkNamesExtensionsToSize';
 
 describe('mapChunkNamesExtensionsToSize', () => {
   it('maps js/css/mjs (but not the .map files)', () => {
-    const stats: webpack.Stats.ToJsonOutput = {
+    const stats: webpack4.Stats.ToJsonOutput = {
       _showErrors: false,
       _showWarnings: false,
       errors: [],
@@ -91,7 +91,7 @@ describe('mapChunkNamesExtensionsToSize', () => {
   });
 
   it('returns null when brolti is not defined', () => {
-    const stats: webpack.Stats.ToJsonOutput = {
+    const stats: webpack4.Stats.ToJsonOutput = {
       _showErrors: false,
       _showWarnings: false,
       errors: [],
@@ -114,7 +114,7 @@ describe('mapChunkNamesExtensionsToSize', () => {
   });
 
   it('returns null when gzip is not defined', () => {
-    const stats: webpack.Stats.ToJsonOutput = {
+    const stats: webpack4.Stats.ToJsonOutput = {
       _showErrors: false,
       _showWarnings: false,
       errors: [],
@@ -137,7 +137,7 @@ describe('mapChunkNamesExtensionsToSize', () => {
   });
 
   it('does not map image', () => {
-    const stats: webpack.Stats.ToJsonOutput = {
+    const stats: webpack4.Stats.ToJsonOutput = {
       _showErrors: false,
       _showWarnings: false,
       errors: [],

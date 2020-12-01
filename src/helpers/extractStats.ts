@@ -4,13 +4,13 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 
 const extractStats = (
-  compilationStats: webpack.Stats.ToJsonOutput | webpack.Stats.ToJsonOutput[]
-): webpack.Stats.ToJsonOutput[] => {
+  compilationStats: webpack4.Stats.ToJsonOutput | webpack4.Stats.ToJsonOutput[]
+): webpack4.Stats.ToJsonOutput[] => {
   if (Array.isArray(compilationStats)) {
-    return compilationStats as webpack.Stats.ToJsonOutput[];
+    return compilationStats as webpack4.Stats.ToJsonOutput[];
   }
 
   if (!compilationStats.assets && compilationStats.children && compilationStats.children.length) {

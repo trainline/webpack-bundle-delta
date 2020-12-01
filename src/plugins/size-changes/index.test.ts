@@ -2,7 +2,7 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import SizeChangesPlugin from './index';
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
@@ -20,8 +20,8 @@ jest.mock('./table', () => {
   };
 });
 
-const baseStats = (baseCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
-const headStats = (headCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
+const baseStats = (baseCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
+const headStats = (headCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
 
 describe('SizeChangesPlugin', () => {
   let sizeChanges: SizeChangesPlugin;

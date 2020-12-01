@@ -2,12 +2,12 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 
 import mapChunkNamesWithModules from './mapChunkNamesWithModules';
 import compilationStats from '../../test/fixtures/head-compilation-stats.json';
 
-const stats = (compilationStats as unknown) as webpack.Stats.ToJsonOutput;
+const stats = (compilationStats as unknown) as webpack4.Stats.ToJsonOutput;
 
 describe('mapChunkNamesWithModules', () => {
   it('returns null when assets are not specified in webpack stats', () => {

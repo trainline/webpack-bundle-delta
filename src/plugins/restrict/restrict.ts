@@ -4,7 +4,7 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import { isEqual } from 'lodash';
 import { Restriction } from './config';
 import extractStats from '../../helpers/extractStats';
@@ -20,7 +20,7 @@ export interface RestrictedModule {
 }
 
 const restrict = (
-  compilationStats: webpack.Stats.ToJsonOutput,
+  compilationStats: webpack4.Stats.ToJsonOutput,
   chunkFilename: string,
   restrictions: Restriction[]
 ): RestrictedModule[] => {

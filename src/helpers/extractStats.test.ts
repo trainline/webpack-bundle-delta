@@ -2,17 +2,17 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import extractStats from './extractStats';
 
-const baseStats: webpack.Stats.ToJsonOutput = {
+const baseStats: webpack4.Stats.ToJsonOutput = {
   _showErrors: false,
   _showWarnings: false,
   errors: [],
   warnings: [],
 };
 
-const statsWithAssets: webpack.Stats.ToJsonOutput = {
+const statsWithAssets: webpack4.Stats.ToJsonOutput = {
   ...baseStats,
   assets: [
     {
@@ -25,7 +25,7 @@ const statsWithAssets: webpack.Stats.ToJsonOutput = {
   ],
 };
 
-const statsWithAssetsAndChildren: webpack.Stats.ToJsonOutput = {
+const statsWithAssetsAndChildren: webpack4.Stats.ToJsonOutput = {
   ...baseStats,
   assets: [
     {
@@ -54,7 +54,7 @@ describe('extractStats', () => {
 
   it('returns stats (multi compile)', () => {
     const children = [statsWithAssets, statsWithAssetsAndChildren];
-    const multiCompileStats: webpack.Stats.ToJsonOutput = {
+    const multiCompileStats: webpack4.Stats.ToJsonOutput = {
       ...baseStats,
       children,
     };

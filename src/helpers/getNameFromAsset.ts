@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license information.
  */
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import { escapeRegExp } from 'lodash';
 import { defaultBasePluginConfig } from '../config/PluginConfig';
 
-export const Asset = ({ assets: [{}] } as webpack.Stats.ToJsonOutput).assets[0];
+export const Asset = ({ assets: [{}] } as webpack4.Stats.ToJsonOutput).assets[0];
 
 const getNameFromAsset = (
   asset: typeof Asset,

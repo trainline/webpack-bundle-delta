@@ -2,23 +2,23 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import DuplicationDetectionPlugin from './index';
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { defaultDuplicationDetectionConfig } from './config';
 
-const baseStats = (baseCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
-const headStats = (headCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
+const baseStats = (baseCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
+const headStats = (headCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
 
-const slimmedBaseStats: webpack.Stats.ToJsonOutput = {
+const slimmedBaseStats: webpack4.Stats.ToJsonOutput = {
   ...baseStats.children[0],
   assets: baseStats.children[0].assets.filter((asset) =>
     asset.name.startsWith('sgpTrainTimesPage')
   ),
 };
 
-const slimmedHeadBaseStats: webpack.Stats.ToJsonOutput = {
+const slimmedHeadBaseStats: webpack4.Stats.ToJsonOutput = {
   ...headStats.children[0],
   assets: headStats.children[0].assets.filter(
     (asset) => asset.name.startsWith('sgpTrainTimesPage') || asset.name.startsWith('sgpStationPage')

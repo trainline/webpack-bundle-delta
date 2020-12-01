@@ -4,7 +4,7 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import {
   FILENAME_JS_MJS_CSS_EXTENSIONS,
   FILENAME_QUERY_REGEXP,
@@ -24,7 +24,7 @@ export interface ChunkNamesExtensionsToSize {
 }
 
 const mapChunkNamesExtensionsToSize = (
-  compilationStats: webpack.Stats.ToJsonOutput,
+  compilationStats: webpack4.Stats.ToJsonOutput,
   chunkFilename: string
 ): ChunkNamesExtensionsToSize => {
   return extractStats(compilationStats).reduce((chunkNamesExtensionsToSize, stats) => {

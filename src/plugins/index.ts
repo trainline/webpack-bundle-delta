@@ -4,7 +4,7 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import fs from 'fs';
 import path from 'path';
 import BasePlugin from './BasePlugin';
@@ -12,8 +12,8 @@ import { UserDefinedConfig } from '../config/PluginConfig';
 
 const plugins = async (
   userDefinedConfig: UserDefinedConfig,
-  baseCompilationStats: webpack.Stats.ToJsonOutput,
-  headCompilationStats: webpack.Stats.ToJsonOutput
+  baseCompilationStats: webpack4.Stats.ToJsonOutput,
+  headCompilationStats: webpack4.Stats.ToJsonOutput
 ): Promise<BasePlugin[]> => {
   return (userDefinedConfig.plugins || [])
     .map(({ name, config }) => {

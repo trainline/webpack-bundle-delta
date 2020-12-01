@@ -4,7 +4,7 @@
  */
 import axios from 'axios';
 
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import TeamCityDataSource, { TeamCityDataSourceConfiguration } from '.';
 import { DataSourceBranchType } from '../BaseDataSource';
 
@@ -32,7 +32,7 @@ describe('TeamCityDataSource', () => {
   });
 
   describe('getCompilationStats()', () => {
-    const baseStats = (baseCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
+    const baseStats = (baseCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
 
     describe('happy path', () => {
       beforeEach(() => {

@@ -4,7 +4,7 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import { AliasRemap } from './AliasRemap';
 import extractStats from '../../helpers/extractStats';
 
@@ -14,7 +14,7 @@ export interface ResolveAliasRemapSuggestion {
 }
 
 const resolveAliasRemap = (
-  compilationStats: webpack.Stats.ToJsonOutput,
+  compilationStats: webpack4.Stats.ToJsonOutput,
   aliasRemap: AliasRemap[]
 ): ResolveAliasRemapSuggestion[] => {
   return extractStats(compilationStats).reduce((result, stats) => {

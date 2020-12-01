@@ -4,10 +4,10 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 
 export interface aliasEntryFn {
-  (module: webpack.Stats.FnModules, stats: webpack.Stats.ToJsonOutput): string;
+  (module: webpack4.Stats.FnModules, stats: webpack4.Stats.ToJsonOutput): string;
 }
 
 export interface AliasRemap {

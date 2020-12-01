@@ -2,10 +2,10 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
+import webpack4 from 'webpack4';
 import resolveAliasRemap, { ResolveAliasRemapSuggestion } from './resolveAliasRemap';
 
-const stats: webpack.Stats.ToJsonOutput = {
+const stats: webpack4.Stats.ToJsonOutput = {
   _showErrors: false,
   _showWarnings: false,
   errors: [],
@@ -13,10 +13,10 @@ const stats: webpack.Stats.ToJsonOutput = {
   modules: [
     ({
       name: './node_modules/lodash/_getNative.js',
-    } as unknown) as webpack.Stats.FnModules,
+    } as unknown) as webpack4.Stats.FnModules,
     ({
       name: './node_modules/lodash.omitby/index.js',
-    } as unknown) as webpack.Stats.FnModules,
+    } as unknown) as webpack4.Stats.FnModules,
   ],
 };
 

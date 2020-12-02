@@ -10,3 +10,4 @@ Documentation links:
 - [Gather Webpack Stats](gather-webpack-stats.md)
 - [Compression Output](compression-output.md)
 - [Contributing](../CONTRIBUTING.md)
+- [Releasing](./releasing.md)

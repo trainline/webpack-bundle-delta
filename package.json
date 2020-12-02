@@ -1,8 +1,17 @@
 {
   "name": "@trainline/webpack-bundle-delta",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "See what has changed between two webpack compilations",
-  "keywords": ["webpack", "bundle", "delta", "diff", "compare", "javascript", "optimize", "minimize"],
+  "keywords": [
+    "webpack",
+    "bundle",
+    "delta",
+    "diff",
+    "compare",
+    "javascript",
+    "optimize",
+    "minimize"
+  ],
   "main": "lib/index.js",
   "repository": "https://github.com/trainline/webpack-bundle-delta",
   "author": "David Houweling <houweling@outlook.com>",

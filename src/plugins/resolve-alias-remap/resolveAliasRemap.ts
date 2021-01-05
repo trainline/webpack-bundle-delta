@@ -3,10 +3,9 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack4 from 'webpack4';
 import { AliasRemap } from './AliasRemap';
-import extractStats from '../../helpers/extractStats';
+import extractStats, { ExtractedStats4 } from '../../helpers/extractStats';
+import { Stats4 } from '../../helpers/constants';
 
 export interface ResolveAliasRemapSuggestion {
   name: string;
@@ -14,10 +13,10 @@ export interface ResolveAliasRemapSuggestion {
 }
 
 const resolveAliasRemap = (
-  compilationStats: webpack4.Stats.ToJsonOutput,
+  compilationStats: Stats4,
   aliasRemap: AliasRemap[]
 ): ResolveAliasRemapSuggestion[] => {
-  return extractStats(compilationStats).reduce((result, stats) => {
+  return (extractStats(compilationStats) as ExtractedStats4).stats.reduce((result, stats) => {
     const remapped = stats.modules
       .map((module) => {
         const remap = aliasRemap.find(({ searchFor }) => new RegExp(searchFor).test(module.name));

@@ -3,7 +3,8 @@
  * See LICENSE.md in the project root for license information.
  */
 import { defaultBasePluginConfig } from '../config/PluginConfig';
-import getNameFromAsset, { Asset } from './getNameFromAsset';
+import { Asset } from './constants';
+import getNameFromAsset from './getNameFromAsset';
 
 const baseAsset = {
   name: '',
@@ -12,14 +13,14 @@ const baseAsset = {
   chunkNames: [],
   info: { immutable: true, minimized: true, size: 1608 },
   emitted: true,
-} as typeof Asset;
+} as Asset;
 
 describe('getNameFromAsset()', () => {
   it('returns name based on specified single chunkName', () => {
     const asset = {
       ...baseAsset,
       chunkNames: ['main'],
-    } as typeof Asset;
+    } as Asset;
 
     expect(getNameFromAsset(asset)).toBe('main');
   });
@@ -28,7 +29,7 @@ describe('getNameFromAsset()', () => {
     const asset = {
       ...baseAsset,
       chunkNames: ['main', 'another'],
-    } as typeof Asset;
+    } as Asset;
 
     expect(getNameFromAsset(asset)).toBe('main+another');
   });
@@ -38,7 +39,7 @@ describe('getNameFromAsset()', () => {
       const asset = {
         ...baseAsset,
         name: 'main.js',
-      } as typeof Asset;
+      } as Asset;
 
       expect(getNameFromAsset(asset, defaultBasePluginConfig.chunkFilename)).toBe('main');
     });
@@ -47,7 +48,7 @@ describe('getNameFromAsset()', () => {
       const asset = {
         ...baseAsset,
         name: 'main.js',
-      } as typeof Asset;
+      } as Asset;
 
       expect(getNameFromAsset(asset, defaultBasePluginConfig.chunkFilename, true)).toBe('main.js');
     });
@@ -57,7 +58,7 @@ describe('getNameFromAsset()', () => {
       const asset = {
         ...baseAsset,
         name: 'main-012abc345def.mjs',
-      } as typeof Asset;
+      } as Asset;
 
       expect(getNameFromAsset(asset, chunkFilename)).toBe('main-[hash]');
     });
@@ -67,7 +68,7 @@ describe('getNameFromAsset()', () => {
       const asset = {
         ...baseAsset,
         name: 'main-012abc345def.mjs',
-      } as typeof Asset;
+      } as Asset;
 
       expect(getNameFromAsset(asset, chunkFilename, true)).toBe('main-[hash].mjs');
     });
@@ -77,7 +78,7 @@ describe('getNameFromAsset()', () => {
       const asset = {
         ...baseAsset,
         name: 'static/js/main.11111111.js',
-      } as typeof Asset;
+      } as Asset;
 
       expect(getNameFromAsset(asset, chunkFilename)).toBe('static/js/main.[contenthash:8]');
     });
@@ -87,7 +88,7 @@ describe('getNameFromAsset()', () => {
       const asset = {
         ...baseAsset,
         name: 'static/js/main.11111111.js',
-      } as typeof Asset;
+      } as Asset;
 
       expect(getNameFromAsset(asset, chunkFilename, true)).toBe(
         'static/js/main.[contenthash:8].js'
@@ -99,7 +100,7 @@ describe('getNameFromAsset()', () => {
       const asset = {
         ...baseAsset,
         name: 'static/css/main.11111111.css',
-      } as typeof Asset;
+      } as Asset;
 
       expect(getNameFromAsset(asset, chunkFilename)).toBe('static/css/main.11111111');
     });
@@ -109,7 +110,7 @@ describe('getNameFromAsset()', () => {
       const asset = {
         ...baseAsset,
         name: 'static/css/main.11111111.css',
-      } as typeof Asset;
+      } as Asset;
 
       expect(getNameFromAsset(asset, chunkFilename, true)).toBe('static/css/main.11111111.css');
     });

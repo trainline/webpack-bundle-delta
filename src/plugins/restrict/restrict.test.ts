@@ -4,9 +4,10 @@
  */
 import webpack4 from 'webpack4';
 import { defaultBasePluginConfig } from '../../config/PluginConfig';
+import { Stats4 } from '../../helpers/constants';
 import restrict, { RestrictedModule } from './restrict';
 
-const stats: webpack4.Stats.ToJsonOutput = {
+const stats: Stats4 = {
   _showErrors: false,
   _showWarnings: false,
   errors: [],

@@ -3,9 +3,10 @@
  * See LICENSE.md in the project root for license information.
  */
 import webpack4 from 'webpack4';
+import { Stats4 } from '../../helpers/constants';
 import resolveAliasRemap, { ResolveAliasRemapSuggestion } from './resolveAliasRemap';
 
-const stats: webpack4.Stats.ToJsonOutput = {
+const stats: Stats4 = {
   _showErrors: false,
   _showWarnings: false,
   errors: [],

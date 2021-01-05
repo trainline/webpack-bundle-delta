@@ -4,11 +4,11 @@
  */
 import axios from 'axios';
 
-import webpack4 from 'webpack4';
 import TeamCityDataSource, { TeamCityDataSourceConfiguration } from '.';
 import { DataSourceBranchType } from '../BaseDataSource';
 
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
+import { Stats4 } from '../../helpers/constants';
 
 jest.mock('axios');
 
@@ -32,7 +32,7 @@ describe('TeamCityDataSource', () => {
   });
 
   describe('getCompilationStats()', () => {
-    const baseStats = (baseCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
+    const baseStats = (baseCompilationStats as unknown) as Stats4;
 
     describe('happy path', () => {
       beforeEach(() => {

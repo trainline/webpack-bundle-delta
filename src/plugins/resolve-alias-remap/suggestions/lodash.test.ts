@@ -5,6 +5,7 @@
 import webpack4 from 'webpack4';
 import lodashSuggestion from './lodash';
 import { aliasEntryFn } from '../AliasRemap';
+import { Stats4 } from '../../../helpers/constants';
 
 const aliasEntryFn = lodashSuggestion.aliasEntry as aliasEntryFn;
 const defaultWebpackStats = {
@@ -12,7 +13,7 @@ const defaultWebpackStats = {
   _showWarnings: false,
   errors: [],
   warnings: [],
-} as webpack4.Stats.ToJsonOutput;
+} as Stats4;
 
 const lodashModule = {
   name: './node_modules/lodash/index.js',

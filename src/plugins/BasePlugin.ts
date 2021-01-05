@@ -3,12 +3,11 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack4 from 'webpack4';
+import { Stats4 } from '../helpers/constants';
 
 export interface BasePluginOptions {
-  baseCompilationStats: webpack4.Stats.ToJsonOutput;
-  headCompilationStats: webpack4.Stats.ToJsonOutput;
+  baseCompilationStats: Stats4;
+  headCompilationStats: Stats4;
   config: unknown;
 }
 

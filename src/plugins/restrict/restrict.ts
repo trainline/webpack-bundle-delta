@@ -3,12 +3,11 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack4 from 'webpack4';
 import { isEqual } from 'lodash';
 import { Restriction } from './config';
-import extractStats from '../../helpers/extractStats';
+import extractStats, { ExtractedStats4 } from '../../helpers/extractStats';
 import getNameFromAsset from '../../helpers/getNameFromAsset';
+import { Stats4 } from '../../helpers/constants';
 
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
 
@@ -20,35 +19,38 @@ export interface RestrictedModule {
 }
 
 const restrict = (
-  compilationStats: webpack4.Stats.ToJsonOutput,
+  compilationStats: Stats4,
   chunkFilename: string,
   restrictions: Restriction[]
 ): RestrictedModule[] => {
-  const restrictedModules = extractStats(compilationStats).reduce((result, stats) => {
-    const module = stats.modules
-      .map(({ name, chunks, issuerPath }) => {
-        const restriction = restrictions.find(({ search }) => new RegExp(search).test(name));
-        if (restriction) {
-          const usageAssets = stats.assets
-            ?.filter(
-              ({ name: assetName, chunks: assetChunks }) =>
-                FILENAME_EXTENSIONS.test(assetName) &&
-                assetChunks.some((assetChunk) => chunks.includes(assetChunk))
-            )
-            .map((asset) => getNameFromAsset(asset, chunkFilename, true));
+  const restrictedModules = (extractStats(compilationStats) as ExtractedStats4).stats.reduce(
+    (result, stats) => {
+      const module = stats.modules
+        .map(({ name, chunks, issuerPath }) => {
+          const restriction = restrictions.find(({ search }) => new RegExp(search).test(name));
+          if (restriction) {
+            const usageAssets = stats.assets
+              ?.filter(
+                ({ name: assetName, chunks: assetChunks }) =>
+                  FILENAME_EXTENSIONS.test(assetName) &&
+                  assetChunks.some((assetChunk) => chunks.includes(assetChunk))
+              )
+              .map((asset) => getNameFromAsset(asset, chunkFilename, true));
 
-          return {
-            filename: name,
-            restriction,
-            chunkNames: usageAssets,
-            issuerPath: issuerPath?.map((ip) => ip.name),
-          } as RestrictedModule;
-        }
-        return null;
-      })
-      .filter((m) => !!m);
-    return result.concat(module);
-  }, [] as RestrictedModule[]);
+            return {
+              filename: name,
+              restriction,
+              chunkNames: usageAssets,
+              issuerPath: issuerPath?.map((ip) => ip.name),
+            } as RestrictedModule;
+          }
+          return null;
+        })
+        .filter((m) => !!m);
+      return result.concat(module);
+    },
+    [] as RestrictedModule[]
+  );
 
   const uniqueRestrictedModules = restrictedModules.reduce((result, restrictedModule) => {
     const existingIndex = result.findIndex(

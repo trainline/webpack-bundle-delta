@@ -4,12 +4,12 @@
  */
 import fs from 'fs';
 import path from 'path';
-import webpack4 from 'webpack4';
 
 import LocalFileDataSource, { LocalFileDataSourceConfiguration } from '.';
 
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
+import { Stats4 } from '../../helpers/constants';
 import { DataSourceBranchType } from '../BaseDataSource';
 
 jest.mock('fs');
@@ -55,8 +55,8 @@ describe('LocalFileDataSource', () => {
   });
 
   describe('getCompilationStats()', () => {
-    const baseStats = (baseCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
-    const headStats = (headCompilationStats as unknown) as webpack4.Stats.ToJsonOutput;
+    const baseStats = (baseCompilationStats as unknown) as Stats4;
+    const headStats = (headCompilationStats as unknown) as Stats4;
 
     describe('happy path', () => {
       beforeEach(() => {

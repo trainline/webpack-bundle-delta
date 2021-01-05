@@ -7,6 +7,7 @@
 import webpack4 from 'webpack4';
 import { join } from 'path';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { Stats4 } from './constants';
 
 /**
  * Options for MergeCompilationStatsWebpackPlugin
@@ -51,7 +52,7 @@ export default class MergeCompilationStatsWebpackPlugin {
     const { assetsPath, inputFiles, filename } = this.options;
 
     compiler.hooks.done.tap('Merge Compiled Stats Plugin', () => {
-      const allStats: webpack4.Stats.ToJsonOutput = {
+      const allStats: Stats4 = {
         _showErrors: false,
         _showWarnings: false,
         errors: [],

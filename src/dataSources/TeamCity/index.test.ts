@@ -9,6 +9,7 @@ import { DataSourceBranchType } from '../BaseDataSource';
 
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import { Stats4 } from '../../helpers/constants';
+import { ExtractedStats } from '../../helpers/extractStats';
 
 jest.mock('axios');
 
@@ -78,10 +79,12 @@ describe('TeamCityDataSource', () => {
         );
       });
 
-      it('returns back the stats', async () => {
-        const data = await dataSource.getCompilationStats(DataSourceBranchType.head, 'some-sha');
-
-        expect(data).toEqual(baseStats);
+      it('returns back the stats', () => {
+        return expect(
+          dataSource.getCompilationStats(DataSourceBranchType.head, 'some-sha')
+        ).resolves.toMatchObject<Partial<ExtractedStats>>({
+          original: baseStats,
+        });
       });
     });
 

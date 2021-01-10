@@ -19,6 +19,7 @@ Every data source should do the following:
 If a data source requires extending, or a new data source is needed please feel free to raise a PR (more the merrier).
 
 Present data sources:
+
 - [LocalFile](LocalFile.ts)
 - [TeamCity](TeamCity.ts)
 
@@ -26,7 +27,7 @@ Present data sources:
 
 All data sources are accessible via the root import, as `<name>DataSource` (i.e. [TeamCity](./TeamCity) is available as `TeamCityDataSource`):
 
-```
+``` javascript
 import { TeamCityDataSource } from 'webpack-bundle-delta';
 ```
 

@@ -7,7 +7,8 @@ import fs from 'fs';
 import path from 'path';
 
 import BaseDataSource, { DataSource, DataSourceBranchType } from '../BaseDataSource';
-import { Stats4 } from '../../helpers/constants';
+import { Stats } from '../../helpers/constants';
+import extractStats, { ExtractedStats } from '../../helpers/extractStats';
 
 export interface LocalFileDataSourceConfiguration {
   baseFilePath: string;
@@ -40,17 +41,17 @@ export default class LocalFileDataSource extends BaseDataSource implements DataS
     }
   }
 
-  async getCompilationStats(branchType: DataSourceBranchType): Promise<Stats4> {
+  async getCompilationStats(branchType: DataSourceBranchType): Promise<ExtractedStats> {
     let file: string;
     if (branchType === DataSourceBranchType.head) {
       file = await fs.promises.readFile(this.options.headFilePath, 'utf-8');
     } else {
       file = await fs.promises.readFile(this.options.baseFilePath, 'utf-8');
     }
-    const data = (JSON.parse(file) as unknown) as Stats4;
+    const data = (JSON.parse(file) as unknown) as Stats;
 
     this.validateCompilationStats(data);
 
-    return data;
+    return extractStats(data);
   }
 }

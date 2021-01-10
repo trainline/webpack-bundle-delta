@@ -9,7 +9,8 @@ import LocalFileDataSource, { LocalFileDataSourceConfiguration } from '.';
 
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
-import { Stats4 } from '../../helpers/constants';
+import { Stats } from '../../helpers/constants';
+import { ExtractedStats } from '../../helpers/extractStats';
 import { DataSourceBranchType } from '../BaseDataSource';
 
 jest.mock('fs');
@@ -55,8 +56,8 @@ describe('LocalFileDataSource', () => {
   });
 
   describe('getCompilationStats()', () => {
-    const baseStats = (baseCompilationStats as unknown) as Stats4;
-    const headStats = (headCompilationStats as unknown) as Stats4;
+    const baseStats = (baseCompilationStats as unknown) as Stats;
+    const headStats = (headCompilationStats as unknown) as Stats;
 
     describe('happy path', () => {
       beforeEach(() => {
@@ -76,15 +77,19 @@ describe('LocalFileDataSource', () => {
       });
 
       it('returns the base compilation stats when specified', () => {
-        return expect(dataSource.getCompilationStats(DataSourceBranchType.base)).resolves.toEqual(
-          baseStats
-        );
+        return expect(
+          dataSource.getCompilationStats(DataSourceBranchType.base)
+        ).resolves.toMatchObject<Partial<ExtractedStats>>({
+          original: baseStats,
+        });
       });
 
       it('returns the head compilation stats when specified', () => {
-        return expect(dataSource.getCompilationStats(DataSourceBranchType.head)).resolves.toEqual(
-          headStats
-        );
+        return expect(
+          dataSource.getCompilationStats(DataSourceBranchType.head)
+        ).resolves.toMatchObject<Partial<ExtractedStats>>({
+          original: headStats,
+        });
       });
     });
 

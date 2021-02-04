@@ -5,9 +5,9 @@
 
 import { isEqual } from 'lodash';
 import { Restriction } from './config';
-import extractStats, { ExtractedStats4 } from '../../helpers/extractStats';
+import { ExtractedStats } from '../../helpers/extractStats';
 import getNameFromAsset from '../../helpers/getNameFromAsset';
-import { Stats4 } from '../../helpers/constants';
+import { Asset, Module, Stats } from '../../helpers/constants';
 
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
 
@@ -19,38 +19,37 @@ export interface RestrictedModule {
 }
 
 const restrict = (
-  compilationStats: Stats4,
+  extractedStats: ExtractedStats,
   chunkFilename: string,
   restrictions: Restriction[]
 ): RestrictedModule[] => {
-  const restrictedModules = (extractStats(compilationStats) as ExtractedStats4).stats.reduce(
-    (result, stats) => {
-      const module = stats.modules
-        .map(({ name, chunks, issuerPath }) => {
-          const restriction = restrictions.find(({ search }) => new RegExp(search).test(name));
-          if (restriction) {
-            const usageAssets = stats.assets
-              ?.filter(
-                ({ name: assetName, chunks: assetChunks }) =>
-                  FILENAME_EXTENSIONS.test(assetName) &&
-                  assetChunks.some((assetChunk) => chunks.includes(assetChunk))
-              )
-              .map((asset) => getNameFromAsset(asset, chunkFilename, true));
+  const restrictedModules = (extractedStats.stats as Stats[]).reduce((result, stats) => {
+    const module = (stats.modules as Module[])
+      .map(({ name, chunks, issuerPath }) => {
+        const restriction = restrictions.find(({ search }) => new RegExp(search).test(name));
+        if (restriction) {
+          const usageAssets = (stats.assets as Asset[])
+            ?.filter(
+              ({ name: assetName, chunks: assetChunks }) =>
+                FILENAME_EXTENSIONS.test(assetName) &&
+                assetChunks.some((assetChunk) => chunks.includes(assetChunk))
+            )
+            .map((asset) => getNameFromAsset(asset, chunkFilename, true));
 
-            return {
-              filename: name,
-              restriction,
-              chunkNames: usageAssets,
-              issuerPath: issuerPath?.map((ip) => ip.name),
-            } as RestrictedModule;
-          }
-          return null;
-        })
-        .filter((m) => !!m);
-      return result.concat(module);
-    },
-    [] as RestrictedModule[]
-  );
+          return {
+            filename: name,
+            restriction,
+            chunkNames: usageAssets,
+            // davidhouweling: for some reason I couldn't cast it to "Module['issuerPath']"
+            // so casting to unknown first, then just trick TS for individual cast
+            issuerPath: (issuerPath as unknown[])?.map((ip: Module['issuerPath'][0]) => ip.name),
+          } as RestrictedModule;
+        }
+        return null;
+      })
+      .filter((m) => !!m);
+    return result.concat(module);
+  }, [] as RestrictedModule[]);
 
   const uniqueRestrictedModules = restrictedModules.reduce((result, restrictedModule) => {
     const existingIndex = result.findIndex(

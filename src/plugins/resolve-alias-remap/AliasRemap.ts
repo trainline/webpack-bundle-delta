@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import { Module, Stats4 } from '../../helpers/constants';
+import { Module, Stats } from '../../helpers/constants';
 
 export interface aliasEntryFn {
-  (module: Module, stats: Stats4): string;
+  (module: Module, stats: Stats): string;
 }
 
 export interface AliasRemap {

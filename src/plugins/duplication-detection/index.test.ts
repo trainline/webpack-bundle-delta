@@ -7,23 +7,24 @@ import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { defaultDuplicationDetectionConfig } from './config';
 import { Stats4 } from '../../helpers/constants';
+import extractStats from '../../helpers/extractStats';
 
 const baseStats = (baseCompilationStats as unknown) as Stats4;
 const headStats = (headCompilationStats as unknown) as Stats4;
 
-const slimmedBaseStats: Stats4 = {
+const slimmedBaseStats = extractStats({
   ...baseStats.children[0],
   assets: baseStats.children[0].assets.filter((asset) =>
     asset.name.startsWith('sgpTrainTimesPage')
   ),
-};
+} as Stats4);
 
-const slimmedHeadBaseStats: Stats4 = {
+const slimmedHeadBaseStats = extractStats({
   ...headStats.children[0],
   assets: headStats.children[0].assets.filter(
     (asset) => asset.name.startsWith('sgpTrainTimesPage') || asset.name.startsWith('sgpStationPage')
   ),
-};
+} as Stats4);
 
 describe('DuplicationDetectionPlugin', () => {
   let duplicationDetection: DuplicationDetectionPlugin;

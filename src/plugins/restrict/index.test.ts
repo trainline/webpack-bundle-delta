@@ -8,9 +8,10 @@ import headCompilationStats from '../../../test/fixtures/head-compilation-stats.
 import { RestrictConfig } from './config';
 import { defaultBasePluginConfig } from '../../config/PluginConfig';
 import { Stats4 } from '../../helpers/constants';
+import extractStats from '../../helpers/extractStats';
 
-const baseStats = (baseCompilationStats as unknown) as Stats4;
-const headStats = (headCompilationStats as unknown) as Stats4;
+const extractedBaseStats = extractStats((baseCompilationStats as unknown) as Stats4);
+const extractedHeadStats = extractStats((headCompilationStats as unknown) as Stats4);
 const restrictConfig: RestrictConfig = {
   showExisting: false,
   chunkFilename: defaultBasePluginConfig.chunkFilename,
@@ -30,8 +31,8 @@ describe('RestrictPlugin', () => {
   describe('only new restrictions', () => {
     beforeEach(() => {
       restrictPlugin = new RestrictPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: extractedBaseStats,
+        headCompilationStats: extractedHeadStats,
         config: {
           ...restrictConfig,
           showExisting: false,
@@ -65,8 +66,8 @@ describe('RestrictPlugin', () => {
   describe('existing restrictions', () => {
     beforeEach(() => {
       restrictPlugin = new RestrictPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: extractedBaseStats,
+        headCompilationStats: extractedHeadStats,
         config: {
           ...restrictConfig,
           showExisting: true,

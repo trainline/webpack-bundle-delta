@@ -2,16 +2,12 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack4 from 'webpack4';
 import { defaultBasePluginConfig } from '../../config/PluginConfig';
-import { Stats4 } from '../../helpers/constants';
+import { Stats } from '../../helpers/constants';
+import extractStats from '../../helpers/extractStats';
 import restrict, { RestrictedModule } from './restrict';
 
-const stats: Stats4 = {
-  _showErrors: false,
-  _showWarnings: false,
-  errors: [],
-  warnings: [],
+const extractedStats = extractStats({
   assets: [
     {
       name: 'file-1-hash.js',
@@ -29,7 +25,7 @@ const stats: Stats4 = {
     },
   ],
   modules: [
-    ({
+    {
       name: './node_modules/lodash/_getNative.js',
       issuerPath: [
         {
@@ -40,8 +36,8 @@ const stats: Stats4 = {
         },
       ],
       chunks: [1, 2],
-    } as unknown) as webpack4.Stats.FnModules,
-    ({
+    },
+    {
       name: './node_modules/lodash.omitby/index.js',
       issuerPath: [
         {
@@ -52,8 +48,8 @@ const stats: Stats4 = {
         },
       ],
       chunks: [2],
-    } as unknown) as webpack4.Stats.FnModules,
-    ({
+    },
+    {
       name: './node_modules/not-restricted/index.js',
       issuerPath: [
         {
@@ -61,14 +57,14 @@ const stats: Stats4 = {
         },
       ],
       chunks: [1],
-    } as unknown) as webpack4.Stats.FnModules,
+    },
   ],
-};
+} as Stats);
 
 describe('restrict', () => {
   it('returns the expected restricted files', () => {
     expect(
-      restrict(stats, defaultBasePluginConfig.chunkFilename, [
+      restrict(extractedStats, defaultBasePluginConfig.chunkFilename, [
         { search: 'lodash.omitby', responseType: 'error', message: 'no lodash.omitby' },
       ])
     ).toEqual<RestrictedModule[]>([
@@ -87,7 +83,7 @@ describe('restrict', () => {
 
   it('returns the expected restrict files when using regexp', () => {
     expect(
-      restrict(stats, defaultBasePluginConfig.chunkFilename, [
+      restrict(extractedStats, defaultBasePluginConfig.chunkFilename, [
         { search: 'lodash.+', responseType: 'error', message: 'no lodash components' },
       ])
     ).toEqual<RestrictedModule[]>([
@@ -117,13 +113,9 @@ describe('restrict', () => {
   it('returns unique results (for multi compile)', () => {
     expect(
       restrict(
-        {
-          _showErrors: false,
-          _showWarnings: false,
-          errors: [],
-          warnings: [],
-          children: [stats, stats],
-        },
+        extractStats({
+          children: [extractedStats.original, extractedStats.original],
+        } as Stats),
         defaultBasePluginConfig.chunkFilename,
         [{ search: 'lodash.omitby', responseType: 'error', message: 'no lodash.omitby' }]
       )

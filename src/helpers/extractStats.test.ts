@@ -21,7 +21,6 @@ const asset: Stats5['assets'][0] = {
   comparedForEmit: false,
   cached: true,
   info: {},
-  related: {},
   chunks: [],
   auxiliaryChunks: [4231],
   isOverSizeLimit: false,

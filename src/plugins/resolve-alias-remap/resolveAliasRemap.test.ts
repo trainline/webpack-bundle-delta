@@ -2,29 +2,25 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack4 from 'webpack4';
-import { Stats4 } from '../../helpers/constants';
+
+import extractStats from '../../helpers/extractStats';
 import resolveAliasRemap, { ResolveAliasRemapSuggestion } from './resolveAliasRemap';
 
-const stats: Stats4 = {
-  _showErrors: false,
-  _showWarnings: false,
-  errors: [],
-  warnings: [],
+const extractedStats = extractStats({
   modules: [
-    ({
+    {
       name: './node_modules/lodash/_getNative.js',
-    } as unknown) as webpack4.Stats.FnModules,
-    ({
+    },
+    {
       name: './node_modules/lodash.omitby/index.js',
-    } as unknown) as webpack4.Stats.FnModules,
+    },
   ],
-};
+});
 
 describe('resolveAliasRemap', () => {
   it('returns the expected alias remap suggestion for lodash.omitby (string alias entry)', () => {
     expect(
-      resolveAliasRemap(stats, [
+      resolveAliasRemap(extractedStats, [
         { searchFor: 'lodash\\.([^/]+)', aliasEntry: 'lodash.$1: lodash/$1' },
       ])
     ).toEqual<ResolveAliasRemapSuggestion[]>([
@@ -37,7 +33,9 @@ describe('resolveAliasRemap', () => {
 
   it('returns the expected alias remap suggestion for lodash.omitby (function alias entry)', () => {
     expect(
-      resolveAliasRemap(stats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: () => 'some-remap' }])
+      resolveAliasRemap(extractedStats, [
+        { searchFor: 'lodash\\.([^/]+)', aliasEntry: () => 'some-remap' },
+      ])
     ).toEqual<ResolveAliasRemapSuggestion[]>([
       {
         name: './node_modules/lodash.omitby/index.js',
@@ -47,14 +45,14 @@ describe('resolveAliasRemap', () => {
   });
 
   it('does not return suggestion when aliasEntry string is empty', () => {
-    expect(resolveAliasRemap(stats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: '' }])).toEqual(
-      []
-    );
+    expect(
+      resolveAliasRemap(extractedStats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: '' }])
+    ).toEqual([]);
   });
 
   it('does not return suggestion when aliasEntry function returns empty', () => {
     expect(
-      resolveAliasRemap(stats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: () => '' }])
+      resolveAliasRemap(extractedStats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: () => '' }])
     ).toEqual([]);
   });
 });

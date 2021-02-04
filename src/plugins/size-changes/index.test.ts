@@ -9,6 +9,7 @@ import { Budget, defaultSizeChangesConfig } from './config';
 import { SizeChange } from './SizeChange';
 import { TableType } from './table';
 import { Stats4 } from '../../helpers/constants';
+import extractStats from '../../helpers/extractStats';
 
 jest.mock('./table', () => {
   const actualTable = jest.requireActual('./table');
@@ -29,8 +30,8 @@ describe('SizeChangesPlugin', () => {
   describe('default configuration', () => {
     beforeEach(() => {
       sizeChanges = new SizeChangesPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: extractStats(baseStats),
+        headCompilationStats: extractStats(headStats),
         config: defaultSizeChangesConfig,
       });
     });
@@ -67,8 +68,8 @@ html table
   describe('no changes', () => {
     beforeEach(() => {
       sizeChanges = new SizeChangesPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: baseStats,
+        baseCompilationStats: extractStats(baseStats),
+        headCompilationStats: extractStats(baseStats),
         config: defaultSizeChangesConfig,
       });
     });
@@ -105,8 +106,8 @@ html table
   describe('config.hideMinorChanges', () => {
     beforeEach(() => {
       sizeChanges = new SizeChangesPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: extractStats(baseStats),
+        headCompilationStats: extractStats(headStats),
         config: { ...defaultSizeChangesConfig, hideMinorChanges: true },
       });
     });
@@ -137,8 +138,8 @@ html table
 
     beforeEach(() => {
       sizeChanges = new SizeChangesPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: extractStats(baseStats),
+        headCompilationStats: extractStats(headStats),
         config: { ...defaultSizeChangesConfig, hideMinorChanges: true, budget },
       });
     });

@@ -3,8 +3,14 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import { FILENAME_JS_MJS_EXTENSIONS, FILENAME_QUERY_REGEXP, Stats4 } from './constants';
-import extractStats, { ExtractedStats4 } from './extractStats';
+import {
+  Asset,
+  FILENAME_JS_MJS_EXTENSIONS,
+  FILENAME_QUERY_REGEXP,
+  Module,
+  Stats,
+} from './constants';
+import { ExtractedStats } from './extractStats';
 
 export interface ChunkModule {
   file: string;
@@ -16,19 +22,20 @@ export interface ChunkNamesToModules {
   [assetName: string]: ChunkModule[];
 }
 
-const mapChunkNamesWithModules = (compilationStats: Stats4): ChunkNamesToModules => {
-  const mapped = (extractStats(compilationStats) as ExtractedStats4).stats.reduce(
-    (chunkNamesToModules, stats) => {
+const mapChunkNamesWithModules = (extractedStats: ExtractedStats): ChunkNamesToModules => {
+  const mapped = (extractedStats.stats as Stats[]).reduce(
+    (chunkNamesToModules: ChunkNamesToModules, stats: Stats) => {
       const { assets, modules } = stats;
       if (!assets || !assets.length || !modules || !modules.length) {
         return chunkNamesToModules;
       }
-      assets
+
+      (assets as Asset[])
         .filter((asset) =>
           FILENAME_JS_MJS_EXTENSIONS.test(asset.name.replace(FILENAME_QUERY_REGEXP, ''))
         )
-        .forEach((asset) => {
-          const assetModules = modules
+        .forEach((asset: Asset) => {
+          const assetModules = (modules as Module[])
             .filter((module) => module.chunks.some((chunk) => asset.chunks.includes(chunk)))
             .map((module) => {
               const [file, moduleCountText] = module.name.split(' + ');

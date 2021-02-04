@@ -7,9 +7,10 @@ import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { defaultResolveAliasRemapConfig } from './config';
 import { Stats4 } from '../../helpers/constants';
+import extractStats from '../../helpers/extractStats';
 
-const baseStats = (baseCompilationStats as unknown) as Stats4;
-const headStats = (headCompilationStats as unknown) as Stats4;
+const extractedBaseStats = extractStats((baseCompilationStats as unknown) as Stats4);
+const extractedHeadStats = extractStats((headCompilationStats as unknown) as Stats4);
 
 describe('ResolveAliasRemapPlugin', () => {
   let resolveAliasRemap: ResolveAliasRemapPlugin;
@@ -17,8 +18,8 @@ describe('ResolveAliasRemapPlugin', () => {
   describe('only new suggestions', () => {
     beforeEach(() => {
       resolveAliasRemap = new ResolveAliasRemapPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: extractedBaseStats,
+        headCompilationStats: extractedHeadStats,
         config: {
           ...defaultResolveAliasRemapConfig,
           showExisting: false,
@@ -42,8 +43,8 @@ describe('ResolveAliasRemapPlugin', () => {
   describe('existing suggestions', () => {
     beforeEach(() => {
       resolveAliasRemap = new ResolveAliasRemapPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: extractedBaseStats,
+        headCompilationStats: extractedHeadStats,
         config: {
           ...defaultResolveAliasRemapConfig,
           showExisting: true,

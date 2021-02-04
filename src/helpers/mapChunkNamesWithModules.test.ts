@@ -5,62 +5,65 @@
 import mapChunkNamesWithModules from './mapChunkNamesWithModules';
 import compilationStats from '../../test/fixtures/head-compilation-stats.json';
 import { Stats4 } from './constants';
+import extractStats from './extractStats';
 
 const stats = (compilationStats as unknown) as Stats4;
 
 describe('mapChunkNamesWithModules', () => {
   it('returns null when assets are not specified in webpack stats', () => {
-    expect(
-      mapChunkNamesWithModules({
-        errors: [],
-        warnings: [],
-        _showErrors: false,
-        _showWarnings: false,
-        modules: stats.modules,
-      })
-    ).toBeNull();
+    const extractedStats = extractStats({
+      errors: [],
+      warnings: [],
+      _showErrors: false,
+      _showWarnings: false,
+      modules: stats.modules,
+    });
+
+    expect(mapChunkNamesWithModules(extractedStats)).toBeNull();
   });
 
   it('returns null when assets is empty in webpack stats', () => {
-    expect(
-      mapChunkNamesWithModules({
-        errors: [],
-        warnings: [],
-        _showErrors: false,
-        _showWarnings: false,
-        assets: [],
-        modules: stats.modules,
-      })
-    ).toBeNull();
+    const extractedStats = extractStats({
+      errors: [],
+      warnings: [],
+      _showErrors: false,
+      _showWarnings: false,
+      assets: [],
+      modules: stats.modules,
+    });
+
+    expect(mapChunkNamesWithModules(extractedStats)).toBeNull();
   });
 
   it('returns null when modules are empty specified in webpack stats', () => {
-    expect(
-      mapChunkNamesWithModules({
-        errors: [],
-        warnings: [],
-        modules: [],
-        _showErrors: false,
-        _showWarnings: false,
-        assets: stats.assets,
-      })
-    ).toBeNull();
+    const extractedStats = extractStats({
+      errors: [],
+      warnings: [],
+      modules: [],
+      _showErrors: false,
+      _showWarnings: false,
+      assets: stats.assets,
+    });
+
+    expect(mapChunkNamesWithModules(extractedStats)).toBeNull();
   });
 
   it('returns null when modules is empty in webpack stats', () => {
-    expect(
-      mapChunkNamesWithModules({
-        errors: [],
-        warnings: [],
-        _showErrors: false,
-        _showWarnings: false,
-        assets: stats.assets,
-        modules: [],
-      })
-    ).toBeNull();
+    const extractedStats = extractStats({
+      errors: [],
+      warnings: [],
+      _showErrors: false,
+      _showWarnings: false,
+      assets: stats.assets,
+      modules: [],
+    });
+
+    expect(mapChunkNamesWithModules(extractedStats)).toBeNull();
   });
 
   it('builds the dependency tree', () => {
-    expect(mapChunkNamesWithModules(stats)).toMatchSnapshot();
+    const extractedStats = extractStats(stats);
+
+    expect(mapChunkNamesWithModules(extractedStats)).toMatchSnapshot();
   });
 });

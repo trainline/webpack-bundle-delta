@@ -4,10 +4,10 @@
  */
 
 // eslint-disable-next-line import/no-extraneous-dependencies
-import webpack4 from 'webpack4';
+import webpack from 'webpack';
 import { join } from 'path';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { Stats4 } from './constants';
+import { Stats } from './constants';
 
 /**
  * Options for MergeCompilationStatsWebpackPlugin
@@ -48,17 +48,19 @@ export default class MergeCompilationStatsWebpackPlugin {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  apply(compiler: webpack4.Compiler): void {
+  apply(compiler: webpack.Compiler): void {
     const { assetsPath, inputFiles, filename } = this.options;
 
     compiler.hooks.done.tap('Merge Compiled Stats Plugin', () => {
-      const allStats: Stats4 = {
-        _showErrors: false,
-        _showWarnings: false,
-        errors: [],
-        warnings: [],
-        children: [],
-      };
+      const allStats: Stats = webpack.version.startsWith('4.')
+        ? {
+            _showErrors: false,
+            _showWarnings: false,
+            errors: [],
+            warnings: [],
+            children: [],
+          }
+        : {};
       inputFiles.forEach((file) => {
         const filePath = join(assetsPath, file);
         if (existsSync(filePath)) {

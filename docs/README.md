@@ -9,5 +9,5 @@ Documentation links:
 - [Comparison with other libraries](comparison.md)
 - [Gather Webpack Stats](gather-webpack-stats.md)
 - [Compression Output](compression-output.md)
-- [Contributing](../CONTRIBUTING.md)
+- [Contributing](../CONTRIBUTING)
 - [Releasing](./releasing.md)

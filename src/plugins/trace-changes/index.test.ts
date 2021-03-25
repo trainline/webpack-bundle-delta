@@ -6,7 +6,7 @@ import TraceChangesPlugin from './index';
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { Stats4 } from '../../types';
-import extractStats from '../../helpers/extractStats';
+import normalizeStats from '../../helpers/normalizeStats';
 
 const baseStats = (baseCompilationStats as unknown) as Stats4;
 const headStats = (headCompilationStats as unknown) as Stats4;
@@ -17,8 +17,8 @@ describe('TraceChangesPlugin', () => {
   describe('changes available', () => {
     beforeEach(() => {
       traceChanges = new TraceChangesPlugin({
-        baseCompilationStats: extractStats(baseStats),
-        headCompilationStats: extractStats(headStats),
+        baseCompilationStats: normalizeStats(baseStats),
+        headCompilationStats: normalizeStats(headStats),
         config: true,
       });
     });
@@ -39,8 +39,8 @@ describe('TraceChangesPlugin', () => {
   describe('no changes available', () => {
     beforeEach(() => {
       traceChanges = new TraceChangesPlugin({
-        baseCompilationStats: extractStats(baseStats),
-        headCompilationStats: extractStats(baseStats),
+        baseCompilationStats: normalizeStats(baseStats),
+        headCompilationStats: normalizeStats(baseStats),
         config: true,
       });
     });

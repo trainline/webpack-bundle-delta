@@ -9,7 +9,6 @@ import LocalFileDataSource, { LocalFileDataSourceConfiguration } from '.';
 
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
-import { ExtractedStats } from '../../helpers/extractStats';
 import { Stats } from '../../types';
 import { DataSourceBranchType } from '../BaseDataSource';
 
@@ -79,17 +78,13 @@ describe('LocalFileDataSource', () => {
       it('returns the base compilation stats when specified', () => {
         return expect(
           dataSource.getCompilationStats(DataSourceBranchType.base)
-        ).resolves.toMatchObject<Partial<ExtractedStats>>({
-          original: baseStats,
-        });
+        ).resolves.toMatchObject<Partial<Stats>>(baseStats);
       });
 
       it('returns the head compilation stats when specified', () => {
         return expect(
           dataSource.getCompilationStats(DataSourceBranchType.head)
-        ).resolves.toMatchObject<Partial<ExtractedStats>>({
-          original: headStats,
-        });
+        ).resolves.toMatchObject<Partial<Stats>>(headStats);
       });
     });
 

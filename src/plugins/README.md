@@ -62,7 +62,7 @@ Every plugin should do the following:
 - Create a class extending the [`BasePlugin`](BasePlugin.ts) implementing the necessary methods:
   - `constructor`: extend the `BasePluginOptions` where `config` will be the configuration of your plugin (passed to it by [`index.ts`](index.ts))
     - Be sure to parse both the `baseCompilationStats` and `headCompilationStats` provided to the constructor
-    - Both `base` and `head` stats will have been passed through the [`extractStats`](../helpers/extractStats.ts) to provide either a normalized array of stats, or the original format
+    - Both `base` and `head` stats will have been passed through the [`normalizeStats`](../helpers/normalizeStats.ts) to provide a consistent approach when dealing with the stats
     - It is best to work with the `.stats` property which is the normalized stats, i.e. forcing the stats to always be an array to make it easier to work with both single and multi-compile configurations
   - `summaryOutput`: short output (with no markdown content) to describe the result
     - If this isn't necessary for the plugin, return `null` or `''`

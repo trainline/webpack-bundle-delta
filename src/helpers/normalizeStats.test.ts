@@ -2,8 +2,8 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import { Stats4, Stats5 } from '../types';
-import extractStats, { ExtractedStats4, ExtractedStats5 } from './extractStats';
+import { NormalizedStats4, NormalizedStats5, Stats4, Stats5 } from '../types';
+import normalizeStats from './normalizeStats';
 
 const baseStats: Stats5 = {
   version: '5.9.0',
@@ -86,10 +86,10 @@ const stats4WithAssetsAndChildren: Stats4 = {
   ],
 };
 
-describe('extractStats', () => {
+describe('normalizeStats', () => {
   describe('webpack v5', () => {
     it('returns stats (single compile - no assets, no children)', () => {
-      expect(extractStats(baseStats)).toEqual<ExtractedStats5>({
+      expect(normalizeStats(baseStats)).toEqual<NormalizedStats5>({
         majorVersion: 5,
         stats: [baseStats],
         original: baseStats,
@@ -102,7 +102,7 @@ describe('extractStats', () => {
       } as Stats5;
       delete noVersionStats.version;
 
-      expect(extractStats(noVersionStats)).toEqual<ExtractedStats5>({
+      expect(normalizeStats(noVersionStats)).toEqual<NormalizedStats5>({
         majorVersion: 5,
         stats: [noVersionStats],
         original: noVersionStats,
@@ -110,7 +110,7 @@ describe('extractStats', () => {
     });
 
     it('returns stats (single compile - assets, no children)', () => {
-      expect(extractStats(statsWithAssets)).toEqual<ExtractedStats5>({
+      expect(normalizeStats(statsWithAssets)).toEqual<NormalizedStats5>({
         majorVersion: 5,
         stats: [statsWithAssets],
         original: statsWithAssets,
@@ -118,7 +118,7 @@ describe('extractStats', () => {
     });
 
     it('returns stats (single compile - assets, children', () => {
-      expect(extractStats(statsWithAssetsAndChildren)).toEqual<ExtractedStats5>({
+      expect(normalizeStats(statsWithAssetsAndChildren)).toEqual<NormalizedStats5>({
         majorVersion: 5,
         stats: [statsWithAssetsAndChildren],
         original: statsWithAssetsAndChildren,
@@ -132,7 +132,7 @@ describe('extractStats', () => {
         children,
       };
 
-      expect(extractStats(multiCompileStats)).toEqual<ExtractedStats5>({
+      expect(normalizeStats(multiCompileStats)).toEqual<NormalizedStats5>({
         majorVersion: 5,
         stats: children,
         original: multiCompileStats,
@@ -142,7 +142,7 @@ describe('extractStats', () => {
     it('returns stats (parallel-webpack --profile --json flags)', () => {
       const children = [statsWithAssets, statsWithAssetsAndChildren];
 
-      expect(extractStats(children)).toEqual<ExtractedStats5>({
+      expect(normalizeStats(children)).toEqual<NormalizedStats5>({
         majorVersion: 5,
         stats: children,
         original: children as unknown,
@@ -152,7 +152,7 @@ describe('extractStats', () => {
 
   describe('webpack v4', () => {
     it('returns stats (single compile - no assets, no children)', () => {
-      expect(extractStats(base4Stats)).toEqual<ExtractedStats4>({
+      expect(normalizeStats(base4Stats)).toEqual<NormalizedStats4>({
         majorVersion: 4,
         stats: [base4Stats],
         original: base4Stats,
@@ -165,7 +165,7 @@ describe('extractStats', () => {
       } as Stats4;
       delete noVersionStats.version;
 
-      expect(extractStats(noVersionStats)).toEqual<ExtractedStats4>({
+      expect(normalizeStats(noVersionStats)).toEqual<NormalizedStats4>({
         majorVersion: 4,
         stats: [noVersionStats],
         original: noVersionStats,
@@ -173,7 +173,7 @@ describe('extractStats', () => {
     });
 
     it('returns stats (single compile - assets, no children)', () => {
-      expect(extractStats(stats4WithAssets)).toEqual<ExtractedStats4>({
+      expect(normalizeStats(stats4WithAssets)).toEqual<NormalizedStats4>({
         majorVersion: 4,
         stats: [stats4WithAssets],
         original: stats4WithAssets,
@@ -181,7 +181,7 @@ describe('extractStats', () => {
     });
 
     it('returns stats (single compile - assets, children', () => {
-      expect(extractStats(stats4WithAssetsAndChildren)).toEqual<ExtractedStats4>({
+      expect(normalizeStats(stats4WithAssetsAndChildren)).toEqual<NormalizedStats4>({
         majorVersion: 4,
         stats: [stats4WithAssetsAndChildren],
         original: stats4WithAssetsAndChildren,
@@ -195,7 +195,7 @@ describe('extractStats', () => {
         children,
       };
 
-      expect(extractStats(multiCompileStats)).toEqual<ExtractedStats4>({
+      expect(normalizeStats(multiCompileStats)).toEqual<NormalizedStats4>({
         majorVersion: 4,
         stats: children,
         original: multiCompileStats,
@@ -205,7 +205,7 @@ describe('extractStats', () => {
     it('returns stats (parallel-webpack --profile --json flags)', () => {
       const children = [stats4WithAssets, stats4WithAssetsAndChildren];
 
-      expect(extractStats(children)).toEqual<ExtractedStats4>({
+      expect(normalizeStats(children)).toEqual<NormalizedStats4>({
         majorVersion: 4,
         stats: children,
         original: children as unknown,

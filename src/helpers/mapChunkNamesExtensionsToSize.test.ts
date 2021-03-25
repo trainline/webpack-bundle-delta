@@ -4,14 +4,14 @@
  */
 import { defaultBasePluginConfig } from '../config/PluginConfig';
 import { Stats4, Stats5 } from '../types';
-import extractStats from './extractStats';
+import normalizeStats from './normalizeStats';
 
 import mapChunkNamesExtensionsToSize from './mapChunkNamesExtensionsToSize';
 
 describe('mapChunkNamesExtensionsToSize', () => {
   describe('webpack v5', () => {
     it('maps js/css/mjs (but not the .map files)', () => {
-      const extractedStats = extractStats({
+      const normalizedStats = normalizeStats({
         assets: [
           {
             type: 'asset',
@@ -208,7 +208,7 @@ describe('mapChunkNamesExtensionsToSize', () => {
       } as Stats5);
 
       expect(
-        mapChunkNamesExtensionsToSize(extractedStats, defaultBasePluginConfig.chunkFilename)
+        mapChunkNamesExtensionsToSize(normalizedStats, defaultBasePluginConfig.chunkFilename)
       ).toEqual({
         sgpTrainTimesPage: {
           css: {
@@ -226,7 +226,7 @@ describe('mapChunkNamesExtensionsToSize', () => {
     });
 
     it('returns null when brolti is not defined', () => {
-      const extractedStats = extractStats({
+      const normalizedStats = normalizeStats({
         assets: [
           {
             type: 'asset',
@@ -258,13 +258,13 @@ describe('mapChunkNamesExtensionsToSize', () => {
       } as Stats5);
 
       expect(
-        mapChunkNamesExtensionsToSize(extractedStats, defaultBasePluginConfig.chunkFilename)
+        mapChunkNamesExtensionsToSize(normalizedStats, defaultBasePluginConfig.chunkFilename)
           .sgpTrainTimesPage.js
       ).toHaveProperty('brSize', null);
     });
 
     it('returns null when gzip is not defined', () => {
-      const extractedStats = extractStats({
+      const normalizedStats = normalizeStats({
         assets: [
           {
             type: 'asset',
@@ -299,13 +299,13 @@ describe('mapChunkNamesExtensionsToSize', () => {
       } as Stats5);
 
       expect(
-        mapChunkNamesExtensionsToSize(extractedStats, defaultBasePluginConfig.chunkFilename)
+        mapChunkNamesExtensionsToSize(normalizedStats, defaultBasePluginConfig.chunkFilename)
           .sgpTrainTimesPage.js
       ).toHaveProperty('gzSize', null);
     });
 
     it('does not map image', () => {
-      const extractedStats = extractStats({
+      const normalizedStats = normalizeStats({
         assets: [
           {
             type: 'asset',
@@ -328,14 +328,14 @@ describe('mapChunkNamesExtensionsToSize', () => {
       } as Stats5);
 
       expect(
-        mapChunkNamesExtensionsToSize(extractedStats, defaultBasePluginConfig.chunkFilename)
+        mapChunkNamesExtensionsToSize(normalizedStats, defaultBasePluginConfig.chunkFilename)
       ).toEqual({});
     });
   });
 
   describe('webpack v4', () => {
     it('maps js/css/mjs (but not the .map files)', () => {
-      const extractedStats = extractStats({
+      const normalizedStats = normalizeStats({
         _showErrors: false,
         _showWarnings: false,
         errors: [],
@@ -401,7 +401,7 @@ describe('mapChunkNamesExtensionsToSize', () => {
       } as Stats4);
 
       expect(
-        mapChunkNamesExtensionsToSize(extractedStats, defaultBasePluginConfig.chunkFilename)
+        mapChunkNamesExtensionsToSize(normalizedStats, defaultBasePluginConfig.chunkFilename)
       ).toEqual({
         sgpTrainTimesPage: {
           css: {
@@ -419,7 +419,7 @@ describe('mapChunkNamesExtensionsToSize', () => {
     });
 
     it('returns null when brolti is not defined', () => {
-      const extractedStats = extractStats({
+      const normalizedStats = normalizeStats({
         _showErrors: false,
         _showWarnings: false,
         errors: [],
@@ -436,13 +436,13 @@ describe('mapChunkNamesExtensionsToSize', () => {
       } as Stats4);
 
       expect(
-        mapChunkNamesExtensionsToSize(extractedStats, defaultBasePluginConfig.chunkFilename)
+        mapChunkNamesExtensionsToSize(normalizedStats, defaultBasePluginConfig.chunkFilename)
           .sgpTrainTimesPage.js
       ).toHaveProperty('brSize', null);
     });
 
     it('returns null when gzip is not defined', () => {
-      const extractedStats = extractStats({
+      const normalizedStats = normalizeStats({
         _showErrors: false,
         _showWarnings: false,
         errors: [],
@@ -459,13 +459,13 @@ describe('mapChunkNamesExtensionsToSize', () => {
       } as Stats4);
 
       expect(
-        mapChunkNamesExtensionsToSize(extractedStats, defaultBasePluginConfig.chunkFilename)
+        mapChunkNamesExtensionsToSize(normalizedStats, defaultBasePluginConfig.chunkFilename)
           .sgpTrainTimesPage.js
       ).toHaveProperty('gzSize', null);
     });
 
     it('does not map image', () => {
-      const extractedStats = extractStats({
+      const normalizedStats = normalizeStats({
         _showErrors: false,
         _showWarnings: false,
         errors: [],
@@ -482,7 +482,7 @@ describe('mapChunkNamesExtensionsToSize', () => {
       } as Stats4);
 
       expect(
-        mapChunkNamesExtensionsToSize(extractedStats, defaultBasePluginConfig.chunkFilename)
+        mapChunkNamesExtensionsToSize(normalizedStats, defaultBasePluginConfig.chunkFilename)
       ).toEqual({});
     });
   });

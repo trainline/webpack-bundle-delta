@@ -7,19 +7,19 @@ import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { defaultDuplicationDetectionConfig } from './config';
 import { Stats4 } from '../../types';
-import extractStats from '../../helpers/extractStats';
+import normalizeStats from '../../helpers/normalizeStats';
 
 const baseStats = (baseCompilationStats as unknown) as Stats4;
 const headStats = (headCompilationStats as unknown) as Stats4;
 
-const slimmedBaseStats = extractStats({
+const slimmedBaseStats = normalizeStats({
   ...baseStats.children[0],
   assets: baseStats.children[0].assets.filter((asset) =>
     asset.name.startsWith('sgpTrainTimesPage')
   ),
 } as Stats4);
 
-const slimmedHeadBaseStats = extractStats({
+const slimmedHeadBaseStats = normalizeStats({
   ...headStats.children[0],
   assets: headStats.children[0].assets.filter(
     (asset) => asset.name.startsWith('sgpTrainTimesPage') || asset.name.startsWith('sgpStationPage')

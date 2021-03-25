@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import { ExtractedStats } from '../helpers/extractStats';
+import { NormalizedStats } from '../types';
 
 export interface BasePluginOptions {
-  baseCompilationStats: ExtractedStats;
-  headCompilationStats: ExtractedStats;
+  baseCompilationStats: NormalizedStats;
+  headCompilationStats: NormalizedStats;
   config: unknown;
 }
 

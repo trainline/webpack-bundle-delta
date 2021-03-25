@@ -7,12 +7,12 @@ import fs from 'fs';
 import path from 'path';
 import BasePlugin from './BasePlugin';
 import { UserDefinedConfig } from '../config/PluginConfig';
-import { ExtractedStats } from '../helpers/extractStats';
+import { NormalizedStats } from '../types';
 
 const plugins = async (
   userDefinedConfig: UserDefinedConfig,
-  baseCompilationStats: ExtractedStats,
-  headCompilationStats: ExtractedStats
+  baseCompilationStats: NormalizedStats,
+  headCompilationStats: NormalizedStats
 ): Promise<BasePlugin[]> => {
   return (userDefinedConfig.plugins || [])
     .map(({ name, config }) => {

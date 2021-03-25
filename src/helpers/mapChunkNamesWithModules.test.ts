@@ -5,13 +5,13 @@
 import mapChunkNamesWithModules from './mapChunkNamesWithModules';
 import compilationStats from '../../test/fixtures/head-compilation-stats.json';
 import { Stats4 } from '../types';
-import extractStats from './extractStats';
+import normalizeStats from './normalizeStats';
 
 const stats = (compilationStats as unknown) as Stats4;
 
 describe('mapChunkNamesWithModules', () => {
   it('returns null when assets are not specified in webpack stats', () => {
-    const extractedStats = extractStats({
+    const normalizedStats = normalizeStats({
       errors: [],
       warnings: [],
       _showErrors: false,
@@ -19,11 +19,11 @@ describe('mapChunkNamesWithModules', () => {
       modules: stats.modules,
     });
 
-    expect(mapChunkNamesWithModules(extractedStats)).toBeNull();
+    expect(mapChunkNamesWithModules(normalizedStats)).toBeNull();
   });
 
   it('returns null when assets is empty in webpack stats', () => {
-    const extractedStats = extractStats({
+    const normalizedStats = normalizeStats({
       errors: [],
       warnings: [],
       _showErrors: false,
@@ -32,11 +32,11 @@ describe('mapChunkNamesWithModules', () => {
       modules: stats.modules,
     });
 
-    expect(mapChunkNamesWithModules(extractedStats)).toBeNull();
+    expect(mapChunkNamesWithModules(normalizedStats)).toBeNull();
   });
 
   it('returns null when modules are empty specified in webpack stats', () => {
-    const extractedStats = extractStats({
+    const normalizedStats = normalizeStats({
       errors: [],
       warnings: [],
       modules: [],
@@ -45,11 +45,11 @@ describe('mapChunkNamesWithModules', () => {
       assets: stats.assets,
     });
 
-    expect(mapChunkNamesWithModules(extractedStats)).toBeNull();
+    expect(mapChunkNamesWithModules(normalizedStats)).toBeNull();
   });
 
   it('returns null when modules is empty in webpack stats', () => {
-    const extractedStats = extractStats({
+    const normalizedStats = normalizeStats({
       errors: [],
       warnings: [],
       _showErrors: false,
@@ -58,12 +58,12 @@ describe('mapChunkNamesWithModules', () => {
       modules: [],
     });
 
-    expect(mapChunkNamesWithModules(extractedStats)).toBeNull();
+    expect(mapChunkNamesWithModules(normalizedStats)).toBeNull();
   });
 
   it('builds the dependency tree', () => {
-    const extractedStats = extractStats(stats);
+    const normalizedStats = normalizeStats(stats);
 
-    expect(mapChunkNamesWithModules(extractedStats)).toMatchSnapshot();
+    expect(mapChunkNamesWithModules(normalizedStats)).toMatchSnapshot();
   });
 });

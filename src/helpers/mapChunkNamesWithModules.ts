@@ -4,8 +4,7 @@
  */
 
 import { FILENAME_JS_MJS_EXTENSIONS, FILENAME_QUERY_REGEXP } from './constants';
-import { Asset, Module, Stats } from '../types';
-import { ExtractedStats } from './extractStats';
+import { Asset, NormalizedStats, Module, Stats } from '../types';
 
 export interface ChunkModule {
   file: string;
@@ -17,8 +16,8 @@ export interface ChunkNamesToModules {
   [assetName: string]: ChunkModule[];
 }
 
-const mapChunkNamesWithModules = (extractedStats: ExtractedStats): ChunkNamesToModules => {
-  const mapped = (extractedStats.stats as Stats[]).reduce(
+const mapChunkNamesWithModules = (normalizedStats: NormalizedStats): ChunkNamesToModules => {
+  const mapped = (normalizedStats.stats as Stats[]).reduce(
     (chunkNamesToModules: ChunkNamesToModules, stats: Stats) => {
       const { assets, modules } = stats;
       if (!assets || !assets.length || !modules || !modules.length) {

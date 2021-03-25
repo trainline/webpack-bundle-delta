@@ -8,9 +8,8 @@ import {
   FILENAME_QUERY_REGEXP,
   SupportedExtensions,
 } from './constants';
-import { ExtractedStats } from './extractStats';
 import getNameFromAsset from './getNameFromAsset';
-import { Asset, Asset4, Asset5, Stats } from '../types';
+import { Asset, Asset4, Asset5, NormalizedStats, Stats } from '../types';
 
 export interface ChunkNamesExtensionsToSize {
   [chunkName: string]: {
@@ -23,10 +22,10 @@ export interface ChunkNamesExtensionsToSize {
 }
 
 const mapChunkNamesExtensionsToSize = (
-  extractedStats: ExtractedStats,
+  normalizedStats: NormalizedStats,
   chunkFilename: string
 ): ChunkNamesExtensionsToSize => {
-  return (extractedStats.stats as Stats[]).reduce((chunkNamesExtensionsToSize, stats) => {
+  return (normalizedStats.stats as Stats[]).reduce((chunkNamesExtensionsToSize, stats) => {
     const { assets } = stats;
     (assets as Asset[])
       .filter((asset) =>
@@ -40,7 +39,7 @@ const mapChunkNamesExtensionsToSize = (
         // these are only generated when the ratio is high enough
         let gzAsset: Asset;
         let brAsset: Asset;
-        if (extractedStats.majorVersion === 4) {
+        if (normalizedStats.majorVersion === 4) {
           const assets4 = assets as Asset4[];
           gzAsset = assets4.find((a) => a.name.startsWith(`${nameWithoutQuery}.gz`));
           brAsset = assets4.find((a) => a.name.startsWith(`${nameWithoutQuery}.br`));

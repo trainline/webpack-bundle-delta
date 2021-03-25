@@ -5,7 +5,6 @@
 
 import axios, { AxiosResponse } from 'axios';
 import BaseDataSource, { DataSource, DataSourceBranchType } from '../BaseDataSource';
-import extractStats, { ExtractedStats } from '../../helpers/extractStats';
 import { Stats } from '../../types';
 
 export interface TeamCityDataSourceConfiguration {
@@ -25,10 +24,7 @@ export default class TeamCityDataSource extends BaseDataSource implements DataSo
     this.options = options;
   }
 
-  async getCompilationStats(
-    _branchType: DataSourceBranchType,
-    sha: string
-  ): Promise<ExtractedStats> {
+  async getCompilationStats(_branchType: DataSourceBranchType, sha: string): Promise<Stats> {
     const {
       serverUrl,
       username,
@@ -48,6 +44,6 @@ export default class TeamCityDataSource extends BaseDataSource implements DataSo
 
     this.validateCompilationStats(data);
 
-    return extractStats(data);
+    return data;
   }
 }

@@ -15,6 +15,7 @@ import * as cliDataSources from './dataSources/cliIndex';
 import { ExecOptions } from './CliProgram';
 import config from './config';
 import plugins from './plugins';
+import normalizeStats from './helpers/normalizeStats';
 
 const packageJson = JSON.parse(
   readFileSync(path.normalize(path.join(__dirname, '../package.json')), 'utf-8')
@@ -35,7 +36,10 @@ async function exec({ dataSource, baseSha, headSha }: ExecOptions) {
     headSha
   );
 
-  const pluginInstances = await plugins(userConfig, baseCompilationStats, headCompilationStats);
+  const normalizedBaseStats = normalizeStats(baseCompilationStats);
+  const normalizedHeadStats = normalizeStats(headCompilationStats);
+
+  const pluginInstances = await plugins(userConfig, normalizedBaseStats, normalizedHeadStats);
   const errors = (await Promise.all(pluginInstances.map((plugin) => plugin.errorMessages())))
     .flat()
     .filter((line) => !!line && line.length);

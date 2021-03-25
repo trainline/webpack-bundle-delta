@@ -4,8 +4,7 @@
  */
 
 import { AliasRemap } from './AliasRemap';
-import { ExtractedStats } from '../../helpers/extractStats';
-import { Module, Stats } from '../../types';
+import { NormalizedStats, Module, Stats } from '../../types';
 
 export interface ResolveAliasRemapSuggestion {
   name: string;
@@ -13,10 +12,10 @@ export interface ResolveAliasRemapSuggestion {
 }
 
 const resolveAliasRemap = (
-  extractedStats: ExtractedStats,
+  normalizedStats: NormalizedStats,
   aliasRemap: AliasRemap[]
 ): ResolveAliasRemapSuggestion[] => {
-  return (extractedStats.stats as Stats[]).reduce(
+  return (normalizedStats.stats as Stats[]).reduce(
     (result: ResolveAliasRemapSuggestion[], stats) => {
       const remapped = (stats.modules as Module[])
         .map((module) => {

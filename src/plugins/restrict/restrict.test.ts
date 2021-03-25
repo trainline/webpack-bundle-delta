@@ -4,10 +4,10 @@
  */
 import { defaultBasePluginConfig } from '../../config/PluginConfig';
 import { Stats } from '../../types';
-import extractStats from '../../helpers/extractStats';
+import normalizeStats from '../../helpers/normalizeStats';
 import restrict, { RestrictedModule } from './restrict';
 
-const extractedStats = extractStats({
+const normalizedStats = normalizeStats({
   assets: [
     {
       name: 'file-1-hash.js',
@@ -64,7 +64,7 @@ const extractedStats = extractStats({
 describe('restrict', () => {
   it('returns the expected restricted files', () => {
     expect(
-      restrict(extractedStats, defaultBasePluginConfig.chunkFilename, [
+      restrict(normalizedStats, defaultBasePluginConfig.chunkFilename, [
         { search: 'lodash.omitby', responseType: 'error', message: 'no lodash.omitby' },
       ])
     ).toEqual<RestrictedModule[]>([
@@ -83,7 +83,7 @@ describe('restrict', () => {
 
   it('returns the expected restrict files when using regexp', () => {
     expect(
-      restrict(extractedStats, defaultBasePluginConfig.chunkFilename, [
+      restrict(normalizedStats, defaultBasePluginConfig.chunkFilename, [
         { search: 'lodash.+', responseType: 'error', message: 'no lodash components' },
       ])
     ).toEqual<RestrictedModule[]>([
@@ -113,8 +113,8 @@ describe('restrict', () => {
   it('returns unique results (for multi compile)', () => {
     expect(
       restrict(
-        extractStats({
-          children: [extractedStats.original, extractedStats.original],
+        normalizeStats({
+          children: [normalizedStats.original, normalizedStats.original],
         } as Stats),
         defaultBasePluginConfig.chunkFilename,
         [{ search: 'lodash.omitby', responseType: 'error', message: 'no lodash.omitby' }]

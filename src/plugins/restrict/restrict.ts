@@ -5,9 +5,8 @@
 
 import { isEqual } from 'lodash';
 import { Restriction } from './config';
-import { ExtractedStats } from '../../helpers/extractStats';
 import getNameFromAsset from '../../helpers/getNameFromAsset';
-import { Asset, Module, Stats } from '../../types';
+import { Asset, NormalizedStats, Module, Stats } from '../../types';
 
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
 
@@ -19,11 +18,11 @@ export interface RestrictedModule {
 }
 
 const restrict = (
-  extractedStats: ExtractedStats,
+  normalizedStats: NormalizedStats,
   chunkFilename: string,
   restrictions: Restriction[]
 ): RestrictedModule[] => {
-  const restrictedModules = (extractedStats.stats as Stats[]).reduce((result, stats) => {
+  const restrictedModules = (normalizedStats.stats as Stats[]).reduce((result, stats) => {
     const module = (stats.modules as Module[])
       .map(({ name, chunks, issuerPath }) => {
         const restriction = restrictions.find(({ search }) => new RegExp(search).test(name));

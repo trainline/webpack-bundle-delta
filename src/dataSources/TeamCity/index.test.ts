@@ -8,7 +8,6 @@ import TeamCityDataSource, { TeamCityDataSourceConfiguration } from '.';
 import { DataSourceBranchType } from '../BaseDataSource';
 
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
-import { ExtractedStats } from '../../helpers/extractStats';
 import { Stats } from '../../types';
 
 jest.mock('axios');
@@ -82,9 +81,7 @@ describe('TeamCityDataSource', () => {
       it('returns back the stats', () => {
         return expect(
           dataSource.getCompilationStats(DataSourceBranchType.head, 'some-sha')
-        ).resolves.toMatchObject<Partial<ExtractedStats>>({
-          original: baseStats,
-        });
+        ).resolves.toMatchObject<Stats>(baseStats);
       });
     });
 

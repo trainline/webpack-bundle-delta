@@ -7,7 +7,6 @@ import fs from 'fs';
 import path from 'path';
 
 import BaseDataSource, { DataSource, DataSourceBranchType } from '../BaseDataSource';
-import extractStats, { ExtractedStats } from '../../helpers/extractStats';
 import { Stats } from '../../types';
 
 export interface LocalFileDataSourceConfiguration {
@@ -41,7 +40,7 @@ export default class LocalFileDataSource extends BaseDataSource implements DataS
     }
   }
 
-  async getCompilationStats(branchType: DataSourceBranchType): Promise<ExtractedStats> {
+  async getCompilationStats(branchType: DataSourceBranchType): Promise<Stats> {
     let file: string;
     if (branchType === DataSourceBranchType.head) {
       file = await fs.promises.readFile(this.options.headFilePath, 'utf-8');
@@ -52,6 +51,6 @@ export default class LocalFileDataSource extends BaseDataSource implements DataS
 
     this.validateCompilationStats(data);
 
-    return extractStats(data);
+    return data;
   }
 }

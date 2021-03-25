@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import extractStats from '../../helpers/extractStats';
+import normalizeStats from '../../helpers/normalizeStats';
 import resolveAliasRemap, { ResolveAliasRemapSuggestion } from './resolveAliasRemap';
 
-const extractedStats = extractStats({
+const normalizedStats = normalizeStats({
   modules: [
     {
       name: './node_modules/lodash/_getNative.js',
@@ -20,7 +20,7 @@ const extractedStats = extractStats({
 describe('resolveAliasRemap', () => {
   it('returns the expected alias remap suggestion for lodash.omitby (string alias entry)', () => {
     expect(
-      resolveAliasRemap(extractedStats, [
+      resolveAliasRemap(normalizedStats, [
         { searchFor: 'lodash\\.([^/]+)', aliasEntry: 'lodash.$1: lodash/$1' },
       ])
     ).toEqual<ResolveAliasRemapSuggestion[]>([
@@ -33,7 +33,7 @@ describe('resolveAliasRemap', () => {
 
   it('returns the expected alias remap suggestion for lodash.omitby (function alias entry)', () => {
     expect(
-      resolveAliasRemap(extractedStats, [
+      resolveAliasRemap(normalizedStats, [
         { searchFor: 'lodash\\.([^/]+)', aliasEntry: () => 'some-remap' },
       ])
     ).toEqual<ResolveAliasRemapSuggestion[]>([
@@ -46,13 +46,13 @@ describe('resolveAliasRemap', () => {
 
   it('does not return suggestion when aliasEntry string is empty', () => {
     expect(
-      resolveAliasRemap(extractedStats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: '' }])
+      resolveAliasRemap(normalizedStats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: '' }])
     ).toEqual([]);
   });
 
   it('does not return suggestion when aliasEntry function returns empty', () => {
     expect(
-      resolveAliasRemap(extractedStats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: () => '' }])
+      resolveAliasRemap(normalizedStats, [{ searchFor: 'lodash\\.([^/]+)', aliasEntry: () => '' }])
     ).toEqual([]);
   });
 });

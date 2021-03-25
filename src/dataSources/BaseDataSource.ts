@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import extractStats, { ExtractedStats } from '../helpers/extractStats';
+import normalizeStats from '../helpers/normalizeStats';
 import { Stats } from '../types';
 
 export enum DataSourceBranchType {
@@ -12,7 +12,7 @@ export enum DataSourceBranchType {
 }
 
 export interface DataSource {
-  getCompilationStats(branchType: DataSourceBranchType, sha: string): Promise<ExtractedStats>;
+  getCompilationStats(branchType: DataSourceBranchType, sha: string): Promise<Stats>;
 }
 
 /* eslint-disable class-methods-use-this, @typescript-eslint/no-unused-vars */
@@ -23,14 +23,14 @@ export default class BaseDataSource implements DataSource {
     }
   }
 
-  getCompilationStats(_branchType: DataSourceBranchType, _sha: string): Promise<ExtractedStats> {
+  getCompilationStats(_branchType: DataSourceBranchType, _sha: string): Promise<Stats> {
     throw new Error(
       'BaseDataSource cannot be used, please use one of the other data sources or extend this class'
     );
   }
 
   validateCompilationStats(compilationStats: Stats): void {
-    const containsRequiredProps = extractStats(compilationStats).stats.some((stats: Stats) => {
+    const containsRequiredProps = normalizeStats(compilationStats).stats.some((stats: Stats) => {
       const { assets, modules } = stats;
       return assets?.length && modules?.length;
     });

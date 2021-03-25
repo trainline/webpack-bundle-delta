@@ -3,27 +3,14 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import { Stats, Stats4, Stats5 } from '../types';
-
-export type ExtractedStats = ExtractedStats5 | ExtractedStats4;
-
-interface BaseExtractedStats {
-  majorVersion: 4 | 5;
-  stats: Stats[];
-  original: Stats;
-}
-
-export interface ExtractedStats5 extends BaseExtractedStats {
-  majorVersion: 5;
-  stats: Stats5[];
-  original: Stats;
-}
-
-export interface ExtractedStats4 extends BaseExtractedStats {
-  majorVersion: 4;
-  stats: Stats4[];
-  original: Stats;
-}
+import {
+  NormalizedStats,
+  NormalizedStats4,
+  NormalizedStats5,
+  Stats,
+  Stats4,
+  Stats5,
+} from '../types';
 
 const isVersion4Stats = (stats: Stats) => {
   if (stats?.version?.startsWith('5.')) {
@@ -33,7 +20,7 @@ const isVersion4Stats = (stats: Stats) => {
   return typeof (stats as Stats5).assets?.[0]?.type === 'undefined';
 };
 
-const extractStats = (compilationStats: Stats | Stats[]): ExtractedStats => {
+const normalizeStats = (compilationStats: Stats | Stats[]): NormalizedStats => {
   // parallel-webpack output
   if (Array.isArray(compilationStats)) {
     const singleStats = compilationStats[0];
@@ -42,14 +29,14 @@ const extractStats = (compilationStats: Stats | Stats[]): ExtractedStats => {
         majorVersion: 4,
         stats: compilationStats as Stats4[],
         original: compilationStats as unknown,
-      } as ExtractedStats4;
+      } as NormalizedStats4;
     }
 
     return {
       majorVersion: 5,
       stats: compilationStats as Stats5[],
       original: compilationStats as unknown,
-    } as ExtractedStats5;
+    } as NormalizedStats5;
   }
 
   if (!compilationStats.assets && compilationStats.children && compilationStats.children.length) {
@@ -59,14 +46,14 @@ const extractStats = (compilationStats: Stats | Stats[]): ExtractedStats => {
         majorVersion: 4,
         stats: compilationStats.children as Stats4[],
         original: compilationStats as unknown,
-      } as ExtractedStats4;
+      } as NormalizedStats4;
     }
 
     return {
       majorVersion: 5,
       stats: compilationStats.children as Stats5[],
       original: compilationStats as unknown,
-    } as ExtractedStats5;
+    } as NormalizedStats5;
   }
 
   if (isVersion4Stats(compilationStats)) {
@@ -74,14 +61,14 @@ const extractStats = (compilationStats: Stats | Stats[]): ExtractedStats => {
       majorVersion: 4,
       stats: [compilationStats] as Stats4[],
       original: compilationStats as unknown,
-    } as ExtractedStats4;
+    } as NormalizedStats4;
   }
 
   return {
     majorVersion: 5,
     stats: [compilationStats] as Stats5[],
     original: compilationStats as unknown,
-  } as ExtractedStats5;
+  } as NormalizedStats5;
 };
 
-export default extractStats;
+export default normalizeStats;

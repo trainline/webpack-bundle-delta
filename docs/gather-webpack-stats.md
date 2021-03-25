@@ -52,7 +52,7 @@ If you do desire more granular control, please ensure to set the following `stat
 
 [Trivago's `parallel-webpack`](https://github.com/trivago/parallel-webpack) is a great tool to help speed up multiple webpack compilations.
 
-When using `--profile --json` with `parallel-webpack`, the output isn't exactly aligned with what `webpack` itself would produced, but we have catered for that with the [`extractStats.ts` helper](../src/helpers/extractStats.ts) which is applied via the data sources logic.
+When using `--profile --json` with `parallel-webpack`, the output isn't exactly aligned with what `webpack` itself would produced, but we have catered for that with the [`normalizeStats.ts` helper](../src/helpers/normalizeStats.ts) which is applied via the data sources logic.
 
 However, when used with a Stats Plugin such as `webpack-stats-plugin`, there is a good chance the only output for it will be the compilation which finished last. This is because each plugin is executed at the end of the compile step.
 

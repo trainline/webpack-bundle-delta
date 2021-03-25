@@ -3,13 +3,8 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import {
-  Asset,
-  FILENAME_JS_MJS_EXTENSIONS,
-  FILENAME_QUERY_REGEXP,
-  Module,
-  Stats,
-} from './constants';
+import { FILENAME_JS_MJS_EXTENSIONS, FILENAME_QUERY_REGEXP } from './constants';
+import { Asset, Module, Stats } from '../types';
 import { ExtractedStats } from './extractStats';
 
 export interface ChunkModule {

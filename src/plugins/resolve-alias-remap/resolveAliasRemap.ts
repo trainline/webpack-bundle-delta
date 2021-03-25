@@ -5,7 +5,7 @@
 
 import { AliasRemap } from './AliasRemap';
 import { ExtractedStats } from '../../helpers/extractStats';
-import { Module, Stats } from '../../helpers/constants';
+import { Module, Stats } from '../../types';
 
 export interface ResolveAliasRemapSuggestion {
   name: string;

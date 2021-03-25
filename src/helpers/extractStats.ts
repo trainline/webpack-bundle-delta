@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import { Stats, Stats4, Stats5 } from './constants';
+import { Stats, Stats4, Stats5 } from '../types';
 
 export type ExtractedStats = ExtractedStats5 | ExtractedStats4;
 

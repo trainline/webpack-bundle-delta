@@ -7,7 +7,7 @@
 import webpack from 'webpack';
 import { join } from 'path';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
-import { Stats } from './constants';
+import { Stats } from '../types';
 
 /**
  * Options for MergeCompilationStatsWebpackPlugin

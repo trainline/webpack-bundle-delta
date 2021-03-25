@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license information.
  */
 import * as lodash from 'lodash';
-import { Module } from '../../../helpers/constants';
+import { Module } from '../../../types';
 import { aliasEntryFn, AliasRemap } from '../AliasRemap';
 
 // this can have the danger of pulling in methods that it should

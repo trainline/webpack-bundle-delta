@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import { Stats } from '../helpers/constants';
 import extractStats, { ExtractedStats } from '../helpers/extractStats';
+import { Stats } from '../types';
 
 export enum DataSourceBranchType {
   base = 'base',

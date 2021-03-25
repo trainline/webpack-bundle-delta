@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license information.
  */
 
-import { Module, Stats } from '../../helpers/constants';
+import { Module, Stats } from '../../types';
 
 export interface aliasEntryFn {
   (module: Module, stats: Stats): string;

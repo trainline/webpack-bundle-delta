@@ -4,7 +4,7 @@
  */
 import { escapeRegExp } from 'lodash';
 import { defaultBasePluginConfig } from '../config/PluginConfig';
-import { Asset } from './constants';
+import { Asset } from '../types';
 
 const getNameFromAsset = (
   asset: Asset,

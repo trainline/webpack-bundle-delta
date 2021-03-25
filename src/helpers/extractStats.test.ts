@@ -2,7 +2,7 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import { Stats4, Stats5 } from './constants';
+import { Stats4, Stats5 } from '../types';
 import extractStats, { ExtractedStats4, ExtractedStats5 } from './extractStats';
 
 const baseStats: Stats5 = {

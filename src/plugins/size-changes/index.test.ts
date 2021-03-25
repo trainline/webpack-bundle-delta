@@ -8,7 +8,7 @@ import headCompilationStats from '../../../test/fixtures/head-compilation-stats.
 import { Budget, defaultSizeChangesConfig } from './config';
 import { SizeChange } from './SizeChange';
 import { TableType } from './table';
-import { Stats4 } from '../../helpers/constants';
+import { Stats4 } from '../../types';
 import extractStats from '../../helpers/extractStats';
 
 jest.mock('./table', () => {

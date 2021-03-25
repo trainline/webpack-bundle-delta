@@ -6,7 +6,7 @@ import ResolveAliasRemapPlugin from './index';
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { defaultResolveAliasRemapConfig } from './config';
-import { Stats4 } from '../../helpers/constants';
+import { Stats4 } from '../../types';
 import extractStats from '../../helpers/extractStats';
 
 const extractedBaseStats = extractStats((baseCompilationStats as unknown) as Stats4);

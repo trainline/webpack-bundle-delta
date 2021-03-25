@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license information.
  */
 import { defaultBasePluginConfig } from '../config/PluginConfig';
-import { Stats4, Stats5 } from './constants';
+import { Stats4, Stats5 } from '../types';
 import extractStats from './extractStats';
 
 import mapChunkNamesExtensionsToSize from './mapChunkNamesExtensionsToSize';

@@ -7,8 +7,8 @@ import fs from 'fs';
 import path from 'path';
 
 import BaseDataSource, { DataSource, DataSourceBranchType } from '../BaseDataSource';
-import { Stats } from '../../helpers/constants';
 import extractStats, { ExtractedStats } from '../../helpers/extractStats';
+import { Stats } from '../../types';
 
 export interface LocalFileDataSourceConfiguration {
   baseFilePath: string;

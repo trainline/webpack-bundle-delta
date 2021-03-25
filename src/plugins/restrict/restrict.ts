@@ -7,7 +7,7 @@ import { isEqual } from 'lodash';
 import { Restriction } from './config';
 import { ExtractedStats } from '../../helpers/extractStats';
 import getNameFromAsset from '../../helpers/getNameFromAsset';
-import { Asset, Module, Stats } from '../../helpers/constants';
+import { Asset, Module, Stats } from '../../types';
 
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
 

@@ -4,7 +4,7 @@
  */
 import lodashSuggestion from './lodash';
 import { aliasEntryFn } from '../AliasRemap';
-import { Module, Stats } from '../../../helpers/constants';
+import { Module, Stats } from '../../../types';
 
 const aliasEntryFn = lodashSuggestion.aliasEntry as aliasEntryFn;
 const defaultWebpackStats = {} as Stats;

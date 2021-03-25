@@ -4,7 +4,7 @@
  */
 import mapChunkNamesWithModules from './mapChunkNamesWithModules';
 import compilationStats from '../../test/fixtures/head-compilation-stats.json';
-import { Stats4 } from './constants';
+import { Stats4 } from '../types';
 import extractStats from './extractStats';
 
 const stats = (compilationStats as unknown) as Stats4;

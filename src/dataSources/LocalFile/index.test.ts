@@ -9,8 +9,8 @@ import LocalFileDataSource, { LocalFileDataSourceConfiguration } from '.';
 
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
-import { Stats } from '../../helpers/constants';
 import { ExtractedStats } from '../../helpers/extractStats';
+import { Stats } from '../../types';
 import { DataSourceBranchType } from '../BaseDataSource';
 
 jest.mock('fs');

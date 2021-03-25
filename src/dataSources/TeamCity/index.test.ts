@@ -8,8 +8,8 @@ import TeamCityDataSource, { TeamCityDataSourceConfiguration } from '.';
 import { DataSourceBranchType } from '../BaseDataSource';
 
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
-import { Stats } from '../../helpers/constants';
 import { ExtractedStats } from '../../helpers/extractStats';
+import { Stats } from '../../types';
 
 jest.mock('axios');
 

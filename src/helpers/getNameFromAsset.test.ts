@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license information.
  */
 import { defaultBasePluginConfig } from '../config/PluginConfig';
-import { Asset } from './constants';
+import { Asset } from '../types';
 import getNameFromAsset from './getNameFromAsset';
 
 const baseAsset = {

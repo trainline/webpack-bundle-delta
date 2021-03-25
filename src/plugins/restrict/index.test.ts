@@ -7,7 +7,7 @@ import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { RestrictConfig } from './config';
 import { defaultBasePluginConfig } from '../../config/PluginConfig';
-import { Stats4 } from '../../helpers/constants';
+import { Stats4 } from '../../types';
 import extractStats from '../../helpers/extractStats';
 
 const extractedBaseStats = extractStats((baseCompilationStats as unknown) as Stats4);

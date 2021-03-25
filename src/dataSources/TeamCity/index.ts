@@ -5,8 +5,8 @@
 
 import axios, { AxiosResponse } from 'axios';
 import BaseDataSource, { DataSource, DataSourceBranchType } from '../BaseDataSource';
-import { Stats } from '../../helpers/constants';
 import extractStats, { ExtractedStats } from '../../helpers/extractStats';
+import { Stats } from '../../types';
 
 export interface TeamCityDataSourceConfiguration {
   serverUrl: string;

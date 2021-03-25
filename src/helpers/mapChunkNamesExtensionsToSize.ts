@@ -4,16 +4,13 @@
  */
 
 import {
-  Asset,
-  Asset4,
-  Asset5,
   FILENAME_JS_MJS_CSS_EXTENSIONS,
   FILENAME_QUERY_REGEXP,
-  Stats,
   SupportedExtensions,
 } from './constants';
 import { ExtractedStats } from './extractStats';
 import getNameFromAsset from './getNameFromAsset';
+import { Asset, Asset4, Asset5, Stats } from '../types';
 
 export interface ChunkNamesExtensionsToSize {
   [chunkName: string]: {

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license information.
  */
 import { defaultBasePluginConfig } from '../../config/PluginConfig';
-import { Stats } from '../../helpers/constants';
+import { Stats } from '../../types';
 import extractStats from '../../helpers/extractStats';
 import restrict, { RestrictedModule } from './restrict';
 

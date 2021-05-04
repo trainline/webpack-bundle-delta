@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  Get insights into your <strong>webpack v4</strong> bundles as early as possible.
+  Get insights into your <strong>webpack <em>(v4 or v5)</em></strong> bundles as early as possible.
 </p>
 
 Features:
@@ -59,7 +59,7 @@ Which would result in a similar output to the below
 
 ### Significant changes
 
-| File                       |             Size            |         Gzip size          |         Brotli size        |
+| File                       |            Size             |         Gzip size          |        Brotli size         |
 | :------------------------- | :-------------------------: | :------------------------: | :------------------------: |
 | vendors~tocInformation.mjs | 30.28KB (+7.39KB / +32.31%) | 9.34KB (+2.03KB / +27.81%) | 8.06KB (+1.73KB / +27.25%) |
 | vendors~tocInformation.js  | 32.19KB (+7.68KB / +31.36%) | 9.75KB (+2.09KB / +27.34%) | 8.43KB (+1.78KB / +26.69%) |
@@ -67,14 +67,14 @@ Which would result in a similar output to the below
 
 ### Minor changes
 
-| File                                |            Size           |         Gzip size         |        Brotli size        |
-| :---------------------------------- | :-----------------------: | :-----------------------: | :-----------------------: |
-| trainTimesPageV2.mjs                | 565.71KB (+347B / +0.06%) |  150.4KB (-431B / -0.28%) |  118.66KB (+69B / +0.06%) |
-| trainTimesPageV2.js                 | 623.43KB (+370B / +0.06%) |  162.1KB (-22B / -0.01%)  |  124.97KB (+10B / +0.01%) |
-| intl.js                             |            80B            |             -             |             -             |
-| intl.mjs                            |            80B            |             -             |             -             |
-| locale-data-fr.js                   |          11.08KB          |           1.8KB           |           1.54KB          |
-| locale-data-fr.mjs                  |          10.71KB          |           1.61KB          |           1.38KB          |
+| File                 |           Size            |        Gzip size         |       Brotli size        |
+| :------------------- | :-----------------------: | :----------------------: | :----------------------: |
+| trainTimesPageV2.mjs | 565.71KB (+347B / +0.06%) | 150.4KB (-431B / -0.28%) | 118.66KB (+69B / +0.06%) |
+| trainTimesPageV2.js  | 623.43KB (+370B / +0.06%) | 162.1KB (-22B / -0.01%)  | 124.97KB (+10B / +0.01%) |
+| intl.js              |            80B            |            -             |            -             |
+| intl.mjs             |            80B            |            -             |            -             |
+| locale-data-fr.js    |          11.08KB          |          1.8KB           |          1.54KB          |
+| locale-data-fr.mjs   |          10.71KB          |          1.61KB          |          1.38KB          |
 
 <truncated as the table gets quite long>
 

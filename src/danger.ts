@@ -7,6 +7,7 @@ import 'core-js';
 import BaseDataSource, { DataSourceBranchType } from './dataSources/BaseDataSource';
 import plugins from './plugins';
 import config from './config';
+import normalizeStats from './helpers/normalizeStats';
 
 // ref: https://danger.systems/js/usage/extending-danger.html#writing-your-plugin
 // copied from: https://github.com/danger/generator-danger-plugin/blob/master/src/app/templates/ts/src/index.ts#L4-L10
@@ -35,11 +36,10 @@ const danger = ({ dataSource, baseSha, headSha }: DangerExec): void => {
           headSha
         );
 
-        const pluginInstances = await plugins(
-          userConfig,
-          baseCompilationStats,
-          headCompilationStats
-        );
+        const normalizedBaseStats = normalizeStats(baseCompilationStats);
+        const normalizedHeadStats = normalizeStats(headCompilationStats);
+
+        const pluginInstances = await plugins(userConfig, normalizedBaseStats, normalizedHeadStats);
 
         const errors = (
           await Promise.all(pluginInstances.map((plugin) => plugin.errorMessages()))

@@ -3,11 +3,10 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import { Module, Stats } from '../../types';
 
 export interface aliasEntryFn {
-  (module: webpack.Stats.FnModules, stats: webpack.Stats.ToJsonOutput): string;
+  (module: Module, stats: Stats): string;
 }
 
 export interface AliasRemap {

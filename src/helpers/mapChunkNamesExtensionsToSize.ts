@@ -3,15 +3,13 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
 import {
   FILENAME_JS_MJS_CSS_EXTENSIONS,
   FILENAME_QUERY_REGEXP,
   SupportedExtensions,
 } from './constants';
-import extractStats from './extractStats';
 import getNameFromAsset from './getNameFromAsset';
+import { Asset, Asset4, Asset5, NormalizedStats, Stats } from '../types';
 
 export interface ChunkNamesExtensionsToSize {
   [chunkName: string]: {
@@ -24,12 +22,12 @@ export interface ChunkNamesExtensionsToSize {
 }
 
 const mapChunkNamesExtensionsToSize = (
-  compilationStats: webpack.Stats.ToJsonOutput,
+  normalizedStats: NormalizedStats,
   chunkFilename: string
 ): ChunkNamesExtensionsToSize => {
-  return extractStats(compilationStats).reduce((chunkNamesExtensionsToSize, stats) => {
+  return (normalizedStats.stats as Stats[]).reduce((chunkNamesExtensionsToSize, stats) => {
     const { assets } = stats;
-    assets
+    (assets as Asset[])
       .filter((asset) =>
         FILENAME_JS_MJS_CSS_EXTENSIONS.test(asset.name.replace(FILENAME_QUERY_REGEXP, ''))
       )
@@ -37,11 +35,23 @@ const mapChunkNamesExtensionsToSize = (
         const { name, size } = asset;
         const nameWithoutQuery = name.split('?')[0];
         const extension = nameWithoutQuery.split('.').pop();
-        // these are only generated when the ratio is high enough
-        const gzAsset = assets.find((a) => a.name.startsWith(`${nameWithoutQuery}.gz`));
-        const brAsset = assets.find((a) => a.name.startsWith(`${nameWithoutQuery}.br`));
-
         const customName = getNameFromAsset(asset, chunkFilename, false);
+        // these are only generated when the ratio is high enough
+        let gzAsset: Asset;
+        let brAsset: Asset;
+        if (normalizedStats.majorVersion === 4) {
+          const assets4 = assets as Asset4[];
+          gzAsset = assets4.find((a) => a.name.startsWith(`${nameWithoutQuery}.gz`));
+          brAsset = assets4.find((a) => a.name.startsWith(`${nameWithoutQuery}.br`));
+        } else {
+          const asset5 = asset as Asset5;
+          gzAsset = Array.isArray(asset5.related)
+            ? asset5.related.find((relatedAsset) => relatedAsset.type === 'gzipped')
+            : null;
+          brAsset = Array.isArray(asset5.related)
+            ? asset5.related.find((relatedAsset) => relatedAsset.type === 'brotliCompressed')
+            : null;
+        }
 
         // eslint-disable-next-line no-param-reassign
         chunkNamesExtensionsToSize[customName] = {

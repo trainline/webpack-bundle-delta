@@ -2,15 +2,16 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
 import RestrictPlugin from './index';
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { RestrictConfig } from './config';
 import { defaultBasePluginConfig } from '../../config/PluginConfig';
+import { Stats4 } from '../../types';
+import normalizeStats from '../../helpers/normalizeStats';
 
-const baseStats = (baseCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
-const headStats = (headCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
+const normalizedBaseStats = normalizeStats((baseCompilationStats as unknown) as Stats4);
+const normalizedHeadStats = normalizeStats((headCompilationStats as unknown) as Stats4);
 const restrictConfig: RestrictConfig = {
   showExisting: false,
   chunkFilename: defaultBasePluginConfig.chunkFilename,
@@ -30,8 +31,8 @@ describe('RestrictPlugin', () => {
   describe('only new restrictions', () => {
     beforeEach(() => {
       restrictPlugin = new RestrictPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: normalizedBaseStats,
+        headCompilationStats: normalizedHeadStats,
         config: {
           ...restrictConfig,
           showExisting: false,
@@ -65,8 +66,8 @@ describe('RestrictPlugin', () => {
   describe('existing restrictions', () => {
     beforeEach(() => {
       restrictPlugin = new RestrictPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: normalizedBaseStats,
+        headCompilationStats: normalizedHeadStats,
         config: {
           ...restrictConfig,
           showExisting: true,

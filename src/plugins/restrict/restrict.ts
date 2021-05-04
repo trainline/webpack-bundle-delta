@@ -3,12 +3,10 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
 import { isEqual } from 'lodash';
 import { Restriction } from './config';
-import extractStats from '../../helpers/extractStats';
 import getNameFromAsset from '../../helpers/getNameFromAsset';
+import { Asset, NormalizedStats, Module, Stats } from '../../types';
 
 const FILENAME_EXTENSIONS = /\.(js|mjs)$/iu;
 
@@ -20,16 +18,16 @@ export interface RestrictedModule {
 }
 
 const restrict = (
-  compilationStats: webpack.Stats.ToJsonOutput,
+  normalizedStats: NormalizedStats,
   chunkFilename: string,
   restrictions: Restriction[]
 ): RestrictedModule[] => {
-  const restrictedModules = extractStats(compilationStats).reduce((result, stats) => {
-    const module = stats.modules
+  const restrictedModules = (normalizedStats.stats as Stats[]).reduce((result, stats) => {
+    const module = (stats.modules as Module[])
       .map(({ name, chunks, issuerPath }) => {
         const restriction = restrictions.find(({ search }) => new RegExp(search).test(name));
         if (restriction) {
-          const usageAssets = stats.assets
+          const usageAssets = (stats.assets as Asset[])
             ?.filter(
               ({ name: assetName, chunks: assetChunks }) =>
                 FILENAME_EXTENSIONS.test(assetName) &&
@@ -41,7 +39,9 @@ const restrict = (
             filename: name,
             restriction,
             chunkNames: usageAssets,
-            issuerPath: issuerPath?.map((ip) => ip.name),
+            // davidhouweling: for some reason I couldn't cast it to "Module['issuerPath']"
+            // so casting to unknown first, then just trick TS for individual cast
+            issuerPath: (issuerPath as unknown[])?.map((ip: Module['issuerPath'][0]) => ip.name),
           } as RestrictedModule;
         }
         return null;

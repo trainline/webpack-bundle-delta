@@ -3,17 +3,16 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
 import fs from 'fs';
 import path from 'path';
 import BasePlugin from './BasePlugin';
 import { UserDefinedConfig } from '../config/PluginConfig';
+import { NormalizedStats } from '../types';
 
 const plugins = async (
   userDefinedConfig: UserDefinedConfig,
-  baseCompilationStats: webpack.Stats.ToJsonOutput,
-  headCompilationStats: webpack.Stats.ToJsonOutput
+  baseCompilationStats: NormalizedStats,
+  headCompilationStats: NormalizedStats
 ): Promise<BasePlugin[]> => {
   return (userDefinedConfig.plugins || [])
     .map(({ name, config }) => {

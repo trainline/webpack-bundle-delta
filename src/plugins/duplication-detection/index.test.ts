@@ -2,28 +2,29 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
 import DuplicationDetectionPlugin from './index';
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { defaultDuplicationDetectionConfig } from './config';
+import { Stats4 } from '../../types';
+import normalizeStats from '../../helpers/normalizeStats';
 
-const baseStats = (baseCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
-const headStats = (headCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
+const baseStats = (baseCompilationStats as unknown) as Stats4;
+const headStats = (headCompilationStats as unknown) as Stats4;
 
-const slimmedBaseStats: webpack.Stats.ToJsonOutput = {
+const slimmedBaseStats = normalizeStats({
   ...baseStats.children[0],
   assets: baseStats.children[0].assets.filter((asset) =>
     asset.name.startsWith('sgpTrainTimesPage')
   ),
-};
+} as Stats4);
 
-const slimmedHeadBaseStats: webpack.Stats.ToJsonOutput = {
+const slimmedHeadBaseStats = normalizeStats({
   ...headStats.children[0],
   assets: headStats.children[0].assets.filter(
     (asset) => asset.name.startsWith('sgpTrainTimesPage') || asset.name.startsWith('sgpStationPage')
   ),
-};
+} as Stats4);
 
 describe('DuplicationDetectionPlugin', () => {
   let duplicationDetection: DuplicationDetectionPlugin;

@@ -2,13 +2,14 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-import webpack from 'webpack';
 import SizeChangesPlugin from './index';
 import baseCompilationStats from '../../../test/fixtures/base-compilation-stats.json';
 import headCompilationStats from '../../../test/fixtures/head-compilation-stats.json';
 import { Budget, defaultSizeChangesConfig } from './config';
 import { SizeChange } from './SizeChange';
 import { TableType } from './table';
+import { Stats4 } from '../../types';
+import normalizeStats from '../../helpers/normalizeStats';
 
 jest.mock('./table', () => {
   const actualTable = jest.requireActual('./table');
@@ -20,8 +21,8 @@ jest.mock('./table', () => {
   };
 });
 
-const baseStats = (baseCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
-const headStats = (headCompilationStats as unknown) as webpack.Stats.ToJsonOutput;
+const baseStats = (baseCompilationStats as unknown) as Stats4;
+const headStats = (headCompilationStats as unknown) as Stats4;
 
 describe('SizeChangesPlugin', () => {
   let sizeChanges: SizeChangesPlugin;
@@ -29,8 +30,8 @@ describe('SizeChangesPlugin', () => {
   describe('default configuration', () => {
     beforeEach(() => {
       sizeChanges = new SizeChangesPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: normalizeStats(baseStats),
+        headCompilationStats: normalizeStats(headStats),
         config: defaultSizeChangesConfig,
       });
     });
@@ -67,8 +68,8 @@ html table
   describe('no changes', () => {
     beforeEach(() => {
       sizeChanges = new SizeChangesPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: baseStats,
+        baseCompilationStats: normalizeStats(baseStats),
+        headCompilationStats: normalizeStats(baseStats),
         config: defaultSizeChangesConfig,
       });
     });
@@ -105,8 +106,8 @@ html table
   describe('config.hideMinorChanges', () => {
     beforeEach(() => {
       sizeChanges = new SizeChangesPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: normalizeStats(baseStats),
+        headCompilationStats: normalizeStats(headStats),
         config: { ...defaultSizeChangesConfig, hideMinorChanges: true },
       });
     });
@@ -137,8 +138,8 @@ html table
 
     beforeEach(() => {
       sizeChanges = new SizeChangesPlugin({
-        baseCompilationStats: baseStats,
-        headCompilationStats: headStats,
+        baseCompilationStats: normalizeStats(baseStats),
+        headCompilationStats: normalizeStats(headStats),
         config: { ...defaultSizeChangesConfig, hideMinorChanges: true, budget },
       });
     });

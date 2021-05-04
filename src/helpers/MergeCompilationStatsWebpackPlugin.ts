@@ -7,6 +7,7 @@
 import webpack from 'webpack';
 import { join } from 'path';
 import { readFileSync, writeFileSync, existsSync } from 'fs';
+import { Stats } from '../types';
 
 /**
  * Options for MergeCompilationStatsWebpackPlugin
@@ -51,13 +52,15 @@ export default class MergeCompilationStatsWebpackPlugin {
     const { assetsPath, inputFiles, filename } = this.options;
 
     compiler.hooks.done.tap('Merge Compiled Stats Plugin', () => {
-      const allStats: webpack.Stats.ToJsonOutput = {
-        _showErrors: false,
-        _showWarnings: false,
-        errors: [],
-        warnings: [],
-        children: [],
-      };
+      const allStats: Stats = webpack.version.startsWith('4.')
+        ? {
+            _showErrors: false,
+            _showWarnings: false,
+            errors: [],
+            warnings: [],
+            children: [],
+          }
+        : {};
       inputFiles.forEach((file) => {
         const filePath = join(assetsPath, file);
         if (existsSync(filePath)) {

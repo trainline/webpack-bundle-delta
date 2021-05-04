@@ -3,12 +3,11 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
 import fs from 'fs';
 import path from 'path';
 
 import BaseDataSource, { DataSource, DataSourceBranchType } from '../BaseDataSource';
+import { Stats } from '../../types';
 
 export interface LocalFileDataSourceConfiguration {
   baseFilePath: string;
@@ -41,14 +40,14 @@ export default class LocalFileDataSource extends BaseDataSource implements DataS
     }
   }
 
-  async getCompilationStats(branchType: DataSourceBranchType): Promise<webpack.Stats.ToJsonOutput> {
+  async getCompilationStats(branchType: DataSourceBranchType): Promise<Stats> {
     let file: string;
     if (branchType === DataSourceBranchType.head) {
       file = await fs.promises.readFile(this.options.headFilePath, 'utf-8');
     } else {
       file = await fs.promises.readFile(this.options.baseFilePath, 'utf-8');
     }
-    const data = (JSON.parse(file) as unknown) as webpack.Stats.ToJsonOutput;
+    const data = (JSON.parse(file) as unknown) as Stats;
 
     this.validateCompilationStats(data);
 

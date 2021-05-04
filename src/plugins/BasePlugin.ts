@@ -3,12 +3,11 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
+import { NormalizedStats } from '../types';
 
 export interface BasePluginOptions {
-  baseCompilationStats: webpack.Stats.ToJsonOutput;
-  headCompilationStats: webpack.Stats.ToJsonOutput;
+  baseCompilationStats: NormalizedStats;
+  headCompilationStats: NormalizedStats;
   config: unknown;
 }
 

@@ -2,15 +2,12 @@
  * Copyright (c) Trainline Limited, 2020. All rights reserved.
  * See LICENSE.md in the project root for license information.
  */
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
 import { escapeRegExp } from 'lodash';
 import { defaultBasePluginConfig } from '../config/PluginConfig';
-
-export const Asset = ({ assets: [{}] } as webpack.Stats.ToJsonOutput).assets[0];
+import { Asset } from '../types';
 
 const getNameFromAsset = (
-  asset: typeof Asset,
+  asset: Asset,
   chunkFilename = defaultBasePluginConfig.chunkFilename,
   withExtension = false
 ): string => {

@@ -9,7 +9,10 @@ As not all teams/organisations will have the same approach, having a uniform way
 Every data source should do the following:
 
 - Create a class extending the [`BaseDataSource`](BaseDataSource.ts):
-  - implement `getCompilationStats()` in the extending base class, failure to do so will cause an error to be thrown. Also, use `this.validateCompilationStats` to validate the data before turning it (to ensure the correct webpack stats properties are there)
+  - implement `getCompilationStats()` in the extending base class
+    - Failure to do so will cause an error to be thrown
+    - Use `this.validateCompilationStats` to validate the data (ensuring the correct webpack stats properties are there)
+    - Return the stats
   - make this the default export in the folder's `index.ts` file
 - Implement a `cli.ts` which follows the [`CliProgram`](../CliProgram.ts) interface:
   - Refer to [`commander`'s Action handler (sub)commands](https://github.com/tj/commander.js#action-handler-subcommands) for setting up your command
@@ -19,6 +22,7 @@ Every data source should do the following:
 If a data source requires extending, or a new data source is needed please feel free to raise a PR (more the merrier).
 
 Present data sources:
+
 - [LocalFile](LocalFile.ts)
 - [TeamCity](TeamCity.ts)
 
@@ -26,7 +30,7 @@ Present data sources:
 
 All data sources are accessible via the root import, as `<name>DataSource` (i.e. [TeamCity](./TeamCity) is available as `TeamCityDataSource`):
 
-```
+``` javascript
 import { TeamCityDataSource } from 'webpack-bundle-delta';
 ```
 

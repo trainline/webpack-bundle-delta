@@ -3,9 +3,8 @@
  * See LICENSE.md in the project root for license information.
  */
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-import webpack from 'webpack';
-import extractStats from '../helpers/extractStats';
+import normalizeStats from '../helpers/normalizeStats';
+import { Stats } from '../types';
 
 export enum DataSourceBranchType {
   base = 'base',
@@ -13,10 +12,7 @@ export enum DataSourceBranchType {
 }
 
 export interface DataSource {
-  getCompilationStats(
-    branchType: DataSourceBranchType,
-    sha: string
-  ): Promise<webpack.Stats.ToJsonOutput>;
+  getCompilationStats(branchType: DataSourceBranchType, sha: string): Promise<Stats>;
 }
 
 /* eslint-disable class-methods-use-this, @typescript-eslint/no-unused-vars */
@@ -27,17 +23,14 @@ export default class BaseDataSource implements DataSource {
     }
   }
 
-  getCompilationStats(
-    _branchType: DataSourceBranchType,
-    _sha: string
-  ): Promise<webpack.Stats.ToJsonOutput> {
+  getCompilationStats(_branchType: DataSourceBranchType, _sha: string): Promise<Stats> {
     throw new Error(
       'BaseDataSource cannot be used, please use one of the other data sources or extend this class'
     );
   }
 
-  validateCompilationStats(compilationStats: webpack.Stats.ToJsonOutput): void {
-    const containsRequiredProps = extractStats(compilationStats).some((stats) => {
+  validateCompilationStats(compilationStats: Stats): void {
+    const containsRequiredProps = normalizeStats(compilationStats).stats.some((stats: Stats) => {
       const { assets, modules } = stats;
       return assets?.length && modules?.length;
     });

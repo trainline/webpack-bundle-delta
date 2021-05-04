@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license information.
  */
 import * as lodash from 'lodash';
+import { Module } from '../../../types';
 import { aliasEntryFn, AliasRemap } from '../AliasRemap';
 
 // this can have the danger of pulling in methods that it should
@@ -20,7 +21,9 @@ const searchFor = 'lodash\\.([^/]+)';
 const lodashSuggestion: AliasRemap = {
   searchFor,
   aliasEntry: ((module, stats) => {
-    const hasFullLodash = stats.modules?.some(({ name }) => name.includes('/lodash/'));
+    const hasFullLodash = (stats.modules as Module[])?.some(({ name }) =>
+      name.includes('/lodash/')
+    );
     if (!hasFullLodash) {
       // no point suggesting to use full lodash if it doesn't make use of it
       return '';

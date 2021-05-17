@@ -3,7 +3,7 @@
 Whilst the idea of this package is not new, we felt what was presently out there wasn't entirely holistic or easy for developers to know the impact of their changes.
 
 There are many notable solutions out there that might work well enough for your needs
-- [budlesize](https://github.com/siddharthkp/bundlesize)
+- [bundlesize](https://github.com/siddharthkp/bundlesize)
 - [webpack-bundle-diff](https://github.com/smikula/webpack-bundle-diff)
 - [bundle-stats](https://github.com/relative-ci/bundle-stats)
 - [origami-bundle-size-cli](https://github.com/Financial-Times/origami-bundle-size-cli)
